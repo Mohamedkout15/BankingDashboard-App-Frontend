@@ -1,0 +1,55 @@
+{
+  "name": "ngx-window-token",
+  "description": "angular window inject token",
+  "homepage": "https://github.com/maxisam/ngx-window-token",
+  "version": "6.0.0",
+  "author": {
+    "name": "Sam Lin",
+    "email": "maxisam@gmail.com"
+  },
+  "engines": {
+    "node": ">=12.20.x"
+  },
+  "license": "MIT",
+  "publishConfig": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maxisam/ngx-window-token"
+  },
+  "bugs": {
+    "url": "https://github.com/maxisam/ngx-window-token/issues"
+  },
+  "keywords": [
+    "angular",
+    "window",
+    "inject",
+    "token"
+  ],
+  "peerDependencies": {
+    "@angular/common": ">=13.0.0",
+    "@angular/core": ">=13.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
+  "module": "fesm2015/ngx-window-token.mjs",
+  "es2020": "fesm2020/ngx-window-token.mjs",
+  "esm2020": "esm2020/ngx-window-token.mjs",
+  "fesm2020": "fesm2020/ngx-window-token.mjs",
+  "fesm2015": "fesm2015/ngx-window-token.mjs",
+  "typings": "ngx-window-token.d.ts",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./ngx-window-token.d.ts",
+      "esm2020": "./esm2020/ngx-window-token.mjs",
+      "es2020": "./fesm2020/ngx-window-token.mjs",
+      "es2015": "./fesm2015/ngx-window-token.mjs",
+      "node": "./fesm2015/ngx-window-token.mjs",
+      "default": "./fesm2020/ngx-window-token.mjs"
+    }
+  },
+  "sideEffects": false
+}

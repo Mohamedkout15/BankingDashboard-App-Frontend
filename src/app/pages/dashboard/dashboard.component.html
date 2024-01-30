@@ -1,0 +1,80 @@
+<div class="header  pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Dates des visites :</h5>
+        <p class="card-text">Date 1ére visite: <span id="date1v">{{client?.premiereVisite.datePrVisite}}</span></p>
+        <p class="card-text">Date 2éme visite: <span id="date2v">{{client?.deuxiemeVisite.dateDxVisite}}</span></p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Information Client :</h5>
+        <p class="card-text">ID: <span id="idClient">{{client?.idClient}}</span></p>
+        <p class="card-text">Nom Entreprise: <span id="nomEntreprise">{{client?.nomEntreprise}}</span></p>
+        <p class="card-text">Email: <span id="email">{{client?.email}}</span></p>
+        <p class="card-text">Adresse: <span id="adresse">{{client?.adresse}}</span></p>
+        <p class="card-text">Secteur d'activité de l'entreprise: <span id="domaine">{{client?.domaine}}</span></p>
+        <p class="card-text">Matricule Fiscale: <span id="matriculeFiscale">{{client?.matriculeFiscale}}</span></p>
+        <p class="card-text">Numéro de téléphone: <span id="numtel">{{client?.numtel}}</span></p>
+
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+  <div class="card">
+  <div class="card-body">
+  <table class="table table-hover table-bordered">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Situation</th>
+        <th scope="col">Promesse</th>
+        <th scope="col">KPI</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row" >Placements</th>
+        <td>{{client?.premiereVisite.placements}}</td>
+        <td>{{client?.deuxiemeVisite.placements}}</td>
+        <td>{{client?.promesseClient.placements}}</td>
+
+
+      </tr>
+      <tr>
+        <th scope="row">Chiffre d'affaire</th>
+        <td>{{client?.premiereVisite.chiffreAffaire}}</td>
+        <td>{{client?.deuxiemeVisite.chiffreAffaire}}</td>
+        <td>{{client?.promesseClient.chiffreAffaire}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Impayés</th>
+        <td>{{client?.premiereVisite.impayes}}</td>
+        <td>{{client?.deuxiemeVisite.impayes}}</td>
+        <td>{{client?.promesseClient.impayes}}</td>
+      </tr>
+      <tr class="bg-warning">
+        <th scope="row" >Engagements</th>
+        <td>{{client?.premiereVisite.engagements}}</td>
+        <td>{{client?.deuxiemeVisite.engagements}}</td>
+        <td>{{client?.promesseClient.engagements}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Debit</th>
+        <td>{{client?.premiereVisite.debit}}</td>
+        <td>{{client?.deuxiemeVisite.debit}}</td>
+        <td>{{client?.promesseClient.debit}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Depot</th>
+        <td>{{client?.premiereVisite.depot}}</td>
+        <td>{{client?.deuxiemeVisite.depot}}</td>
+        <td>{{client?.promesseClient.depot}}</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+    </div>
+  </div>
+  </div>

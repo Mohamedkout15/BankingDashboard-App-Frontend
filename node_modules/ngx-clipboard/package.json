@@ -1,0 +1,52 @@
+{
+  "name": "ngx-clipboard",
+  "description": "angular 2 clipboard",
+  "version": "15.0.1",
+  "author": {
+    "name": "Sam Lin",
+    "email": "maxisam@gmail.com"
+  },
+  "homepage": "https://github.com/maxisam/ngx-clipboard",
+  "license": "MIT",
+  "publishConfig": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maxisam/ngx-clipboard"
+  },
+  "bugs": {
+    "url": "https://github.com/maxisam/ngx-clipboard/issues"
+  },
+  "keywords": [
+    "angular",
+    "clipboard",
+    "copy"
+  ],
+  "dependencies": {
+    "ngx-window-token": ">=6.0.0",
+    "tslib": "^2.0.0"
+  },
+  "peerDependencies": {
+    "@angular/common": ">=13.0.0",
+    "@angular/core": ">=13.0.0"
+  },
+  "module": "fesm2015/ngx-clipboard.mjs",
+  "es2020": "fesm2020/ngx-clipboard.mjs",
+  "esm2020": "esm2020/ngx-clipboard.mjs",
+  "fesm2020": "fesm2020/ngx-clipboard.mjs",
+  "fesm2015": "fesm2015/ngx-clipboard.mjs",
+  "typings": "ngx-clipboard.d.ts",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./ngx-clipboard.d.ts",
+      "esm2020": "./esm2020/ngx-clipboard.mjs",
+      "es2020": "./fesm2020/ngx-clipboard.mjs",
+      "es2015": "./fesm2015/ngx-clipboard.mjs",
+      "node": "./fesm2015/ngx-clipboard.mjs",
+      "default": "./fesm2020/ngx-clipboard.mjs"
+    }
+  },
+  "sideEffects": false
+}

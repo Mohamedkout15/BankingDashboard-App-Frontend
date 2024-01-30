@@ -1,0 +1,9 @@
+/*
+ * Public API Surface of ngx-clipboard
+ */
+export * from './lib/ngx-clipboard.service';
+export * from './lib/ngx-clipboard.directive';
+export * from './lib/ngx-clipboard.module';
+export * from './lib/ngx-clipboard-if-supported.directive';
+export * from './lib/interface';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3Byb2plY3RzL25neC1jbGlwYm9hcmQvc3JjL3B1YmxpY19hcGkudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7O0dBRUc7QUFFSCxjQUFjLDZCQUE2QixDQUFDO0FBQzVDLGNBQWMsK0JBQStCLENBQUM7QUFDOUMsY0FBYyw0QkFBNEIsQ0FBQztBQUMzQyxjQUFjLDRDQUE0QyxDQUFDO0FBQzNELGNBQWMsaUJBQWlCLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyIvKlxuICogUHVibGljIEFQSSBTdXJmYWNlIG9mIG5neC1jbGlwYm9hcmRcbiAqL1xuXG5leHBvcnQgKiBmcm9tICcuL2xpYi9uZ3gtY2xpcGJvYXJkLnNlcnZpY2UnO1xuZXhwb3J0ICogZnJvbSAnLi9saWIvbmd4LWNsaXBib2FyZC5kaXJlY3RpdmUnO1xuZXhwb3J0ICogZnJvbSAnLi9saWIvbmd4LWNsaXBib2FyZC5tb2R1bGUnO1xuZXhwb3J0ICogZnJvbSAnLi9saWIvbmd4LWNsaXBib2FyZC1pZi1zdXBwb3J0ZWQuZGlyZWN0aXZlJztcbmV4cG9ydCAqIGZyb20gJy4vbGliL2ludGVyZmFjZSc7XG4iXX0=
