@@ -12,21 +12,23 @@ import { Client } from '../../Models/Client.model';
 })
 export class DashboardComponent implements OnInit, OnDestroy {
   client: Client;
-  private clientId: string;
+  clientId: string;
   private routeSubscription: Subscription;
+  selectedDate1: string; // To store selected date for the 1st visit
+  selectedDate2: string; // To store selected date for the 2nd visit
 
   constructor(
-    private clientService: ClientService,
-    private route: ActivatedRoute,
-    private clientDataService: ClientDataService
+      private clientService: ClientService,
+      private route: ActivatedRoute,
+      private clientDataService: ClientDataService
   ) {}
 
   ngOnInit() {
     this.routeSubscription = this.clientDataService.currentClientId.subscribe(
-      (id) => {
-        this.clientId = id;
-        this.fetchClientData();
-      }
+        (id) => {
+          this.clientId = id;
+          this.fetchClientData();
+        }
     );
   }
 
@@ -35,14 +37,35 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   fetchClientData() {
-    this.clientService.getClientData(this.clientId).subscribe(
-      (data: Client) => {
-        this.client = data;
-        console.log(this.client);
-      },
-      (error) => {
-        console.error('Error fetching client data', error);
-      }
+    this.clientService.getClientById(this.clientId).subscribe(
+        (data: Client) => {
+          this.client = data;
+          console.log(this.client);
+        },
+        (error) => {
+          console.error('Error fetching client data', error);
+        }
     );
+  }
+
+  setDatedxvisite(clientId: string, selectedDate: string) {
+    this.clientService.setDatedxvisite(clientId, new Date(selectedDate)).subscribe(
+        (data: Client) => {
+          this.client = data;
+        },
+        (error) => {
+          console.error('Error setting date', error);
+        }
+    );
+  }
+    setDatePrvisite(clientId: string, selectedDate: string) {
+      this.clientService.setDatePrvisite(clientId, new Date(selectedDate)).subscribe(
+          (data: Client) => {
+              this.client = data ;
+          },
+          error => {
+              console.error('Error setting date', error);
+          }
+      );
   }
 }

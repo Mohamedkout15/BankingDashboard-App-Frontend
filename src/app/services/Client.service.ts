@@ -30,6 +30,11 @@ export class ClientService {
     const params = new HttpParams().set('date', date.toISOString().split('T')[0]);
     return this.http.post<Client>(url, null, { params });
   }
+  setDatePrvisite(id: string, date: Date): Observable<Client> {
+    const url = `${this.baseUrl}/setdateprvisite/${id}`;
+    const params = new HttpParams().set('date', date.toISOString().split('T')[0]);
+    return this.http.post<Client>(url, null, { params });
+  }
 
   setDeuxiemeVisite(id: string, deuxiemeVisite: DeuxiemeVisite): Observable<Client> {
     const url = `${this.baseUrl}/setdeuxiemevisite/${id}`;

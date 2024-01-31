@@ -1,13 +1,38 @@
 <div class="header  pb-8 pt-5 pt-md-8">
   <div class="container-fluid">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Dates des visites :</h5>
-        <p class="card-text">Date 1ére visite: <span id="date1v">{{client?.premiereVisite.datePrVisite}}</span></p>
-        <p class="card-text">Date 2éme visite: <span id="date2v">{{client?.deuxiemeVisite.dateDxVisite}}</span></p>
+      <div class="card">
+          <div class="card-body">
+              <h5 class="card-title">Dates des visites :</h5>
+              <p class="card-text">
+                  Date 1ére visite:
+                  <span *ngIf="client?.premiereVisite?.datePrVisite; else dateSelector" id="date1v">
+        {{ client?.premiereVisite.datePrVisite }}
+      </span>
+                  <ng-template #dateSelector>
+                      <input
+                              type="date"
+                              [(ngModel)]="selectedDate1"
+                              (change)="setDatePrvisite(clientId, selectedDate1)"
+                      />
+                  </ng-template>
+              </p>
+              <p class="card-text">
+                  Date 2éme visite:
+                  <span *ngIf="client?.deuxiemeVisite?.dateDxVisite; else dateSelector2" id="date2v">
+        {{ client?.deuxiemeVisite.dateDxVisite }}
+      </span>
+                  <ng-template #dateSelector2>
+                      <input
+                              type="date"
+                              [(ngModel)]="selectedDate2"
+                              (change)="setDatedxvisite(clientId, selectedDate2)"
+                      />
+                  </ng-template>
+              </p>
+          </div>
       </div>
-    </div>
-    <div class="card">
+
+      <div class="card">
       <div class="card-body">
         <h5 class="card-title">Information Client :</h5>
         <p class="card-text">ID: <span id="idClient">{{client?.idClient}}</span></p>
