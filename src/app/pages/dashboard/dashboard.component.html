@@ -1,7 +1,9 @@
-<div class="header  pb-8 pt-5 pt-md-8">
-  <div class="container-fluid">
-      <div class="header pb-8 pt-5 pt-md-8">
-          <div class="container-fluid">
+<div class="header pb-8 pt-5 pt-md-8" style="background-image:linear-gradient(to bottom, #E5E5EA, #F7F7F9);">
+
+
+
+
+<div class="container-fluid">
               <div class="card">
                   <div class="card-body">
                       <h5 class="card-title">Dates des visites :</h5>
@@ -57,14 +59,14 @@
               </div>
           </div>
       </div>
-
+<div class="container-fluid">
       <div class="card">
       <div class="card-body">
         <h5 class="card-title">Information Client :</h5>
         <p class="card-text">ID: <span id="idClient">{{client?.idClient}}</span></p>
         <p class="card-text">Nom Entreprise: <span id="nomEntreprise">{{client?.nomEntreprise}}</span></p>
         <p class="card-text">Email: <span id="email">{{client?.email}}</span></p>
-        <p class="card-text">Adresse: <span id="adresse">{{client?.adresse}}</span></p>
+        <p class="card-text">Adresse: <span id="adresse">{{client?.adresse.codepostal}} {{client?.adresse.adresse}} {{client?.adresse.ville}} {{client?.adresse.gouvernerat}} {{client?.adresse.pays}}</span></p>
         <p class="card-text">Secteur d'activité de l'entreprise: <span id="domaine">{{client?.domaine}}</span></p>
         <p class="card-text">Matricule Fiscale: <span id="matriculeFiscale">{{client?.matriculeFiscale}}</span></p>
         <p class="card-text">Numéro de téléphone: <span id="numtel">{{client?.numtel}}</span></p>
@@ -72,66 +74,193 @@
       </div>
     </div>
   </div>
-  <div class="container-fluid">
-  <div class="card">
-  <div class="card-body">
-  <table class="table table-hover table-bordered">
-    <thead>
-      <tr>
-        <th scope="col"></th>
-        <th scope="col">Situation</th>
-        <th scope="col">Promesse</th>
-        <th scope="col">KPI</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row" >Placements</th>
-        <td>{{client?.premiereVisite.placements}}</td>
-        <td>{{client?.deuxiemeVisite.placements}}</td>
-        <td>{{client?.promesseClient.placements}}</td>
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Tableau de données des visites :</h5>
+            <table class="table table-hover table-bordered">
+                <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Situation</th>
+                    <th scope="col">Promesse</th>
+                    <th scope="col">KPI</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">Placements</th>
+                    <td>
+                        <ng-container *ngIf="client && client.premiereVisite && client.premiereVisite.placements !== null; else inputField">
+                            {{ client?.premiereVisite?.placements }}DT
+                        </ng-container>
+                        <ng-template #inputField>
+                            <input />
+                        </ng-template>
+                    </td>
+                    <td>
+                        <ng-container *ngIf="client && client.deuxiemeVisite && client.deuxiemeVisite.placements !== null; else inputField">
+                            {{ client?.deuxiemeVisite?.placements }}DT
+                        </ng-container>
+                        <ng-template #inputField>
+                            <input  />
+                        </ng-template>
+                    </td>
+                    <td>
+                        <ng-container *ngIf="client && client.promesseClient && client.promesseClient.placements !== null; else inputField">
+                            {{ client?.promesseClient?.placements }}DT
+                        </ng-container>
+                        <ng-template #inputField>
+                            <input  />
+                        </ng-template>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Chiffre d'affaire</th>
+                    <td>
+                        <ng-container *ngIf="client && client.premiereVisite && client.premiereVisite.chiffreAffaire !== null; else inputField">
+                            {{ client?.premiereVisite?.chiffreAffaire }}DT
+                        </ng-container>
+                        <ng-template #inputField>
+                            <input  />
+                        </ng-template>
+                    </td>
+                    <td>
+                        <ng-container *ngIf="client && client.deuxiemeVisite && client.deuxiemeVisite.chiffreAffaire !== null; else inputField">
+                            {{ client?.deuxiemeVisite?.chiffreAffaire }}DT
+                        </ng-container>
+                        <ng-template #inputField>
+                            <input  />
+                        </ng-template>
+                    </td>
+                    <td>
+                        <ng-container *ngIf="client && client.promesseClient && client.promesseClient.chiffreAffaire !== null; else inputField">
+                            {{ client?.promesseClient?.chiffreAffaire }}DT
+                        </ng-container>
+                        <ng-template #inputField>
+                            <input  />
+                        </ng-template>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Impayés</th>
+                    <td>
+                        <ng-container *ngIf="client && client.premiereVisite && client.premiereVisite.impayes !== null; else inputField">
+                            {{ client?.premiereVisite?.impayes }}DT
+                        </ng-container>
+                        <ng-template #inputField>
+                            <input />
+                        </ng-template>
+                    </td>
+                    <td>
+                        <ng-container *ngIf="client && client.deuxiemeVisite && client.deuxiemeVisite.impayes !== null; else inputField">
+                            {{ client?.deuxiemeVisite?.impayes }}DT
+                        </ng-container>
+                        <ng-template #inputField>
+                            <input />
+                        </ng-template>
+                    </td>
+                    <td>
+                        <ng-container *ngIf="client && client.promesseClient && client.promesseClient.impayes !== null; else inputField">
+                            {{ client?.promesseClient?.impayes }}DT
+                        </ng-container>
+                        <ng-template #inputField>
+                            <input />
+                        </ng-template>
+                    </td>
+                </tr>
+                <tr class="bg-warning">
+                    <th scope="row">Engagements</th>
+                    <td>
+                        <ng-container *ngIf="client && client.premiereVisite && client.premiereVisite.engagements !== null;  else inputField">
+                            {{ client?.premiereVisite?.engagements }}DT
+                        </ng-container>
+                        <ng-template #inputField>
+                            <input  />
+                        </ng-template>
+                    </td>
+                    <td>
+                        <ng-container *ngIf="client && client.deuxiemeVisite && client.deuxiemeVisite.engagements !== null;else inputField">
+                            {{ client?.deuxiemeVisite?.engagements }}DT
+                        </ng-container>
+                        <ng-template #inputField>
+                            <input  />
+                        </ng-template>
+                    </td>
+                    <td>
+                        <ng-container *ngIf="client && client.promesseClient && client.promesseClient.engagements !== null; else inputField">
+                            {{ client?.promesseClient?.engagements }}DT
+                        </ng-container>
+                        <ng-template #inputField>
+                            <input  />
+                        </ng-template>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Debit</th>
+                    <td>
+                        <ng-container *ngIf="client && client.premiereVisite && client.premiereVisite.debit !== null; else inputField">
+                            {{ client?.premiereVisite?.debit }}DT
+                        </ng-container>
+                        <ng-template #inputField>
+                            <input  />
+                        </ng-template>
+                    </td>
+                    <td>
+                        <ng-container *ngIf="client && client.deuxiemeVisite && client.deuxiemeVisite.debit !== null; else inputField">
+                            {{ client?.deuxiemeVisite?.debit }}DT
+                        </ng-container>
+                        <ng-template #inputField>
+                            <input  />
+                        </ng-template>
+                    </td>
+                    <td>
+                        <ng-container *ngIf="client && client.promesseClient && client.promesseClient.debit !== null; else inputField">
+                            {{ client?.promesseClient?.debit }}DT
+                        </ng-container>
+                        <ng-template #inputField>
+                            <input  />
+                        </ng-template>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Depot</th>
+                    <td>
+                        <ng-container *ngIf="client && client.premiereVisite && client.premiereVisite.depot !== null; else inputField">
+                            {{ client?.premiereVisite?.depot }}DT
+                        </ng-container>
+                        <ng-template #inputField>
+                            <input  />
+                        </ng-template>
+                    </td>
+                    <td>
+                        <ng-container *ngIf="client && client.deuxiemeVisite && client.deuxiemeVisite.depot !== null; else inputField">
+                            {{ client?.deuxiemeVisite?.depot }}DT
+                        </ng-container>
+                        <ng-template #inputField>
+                            <input  />
+                        </ng-template>
+                    </td>
+                    <td>
+                        <ng-container *ngIf="client && client.promesseClient && client.promesseClient.depot !== null; else inputField">
+                            {{ client?.promesseClient?.depot }}DT
+                        </ng-container>
+                        <ng-template #inputField>
+                            <input />
+                        </ng-template>
+                    </td>
+                </tr>
 
-
-      </tr>
-      <tr>
-        <th scope="row">Chiffre d'affaire</th>
-        <td>{{client?.premiereVisite.chiffreAffaire}}</td>
-        <td>{{client?.deuxiemeVisite.chiffreAffaire}}</td>
-        <td>{{client?.promesseClient.chiffreAffaire}}</td>
-      </tr>
-      <tr>
-        <th scope="row">Impayés</th>
-        <td>{{client?.premiereVisite.impayes}}</td>
-        <td>{{client?.deuxiemeVisite.impayes}}</td>
-        <td>{{client?.promesseClient.impayes}}</td>
-      </tr>
-      <tr class="bg-warning">
-        <th scope="row" >Engagements</th>
-        <td>{{client?.premiereVisite.engagements}}</td>
-        <td>{{client?.deuxiemeVisite.engagements}}</td>
-        <td>{{client?.promesseClient.engagements}}</td>
-      </tr>
-      <tr>
-        <th scope="row">Debit</th>
-        <td>{{client?.premiereVisite.debit}}</td>
-        <td>{{client?.deuxiemeVisite.debit}}</td>
-        <td>{{client?.promesseClient.debit}}</td>
-      </tr>
-      <tr>
-        <th scope="row">Depot</th>
-        <td>{{client?.premiereVisite.depot}}</td>
-        <td>{{client?.deuxiemeVisite.depot}}</td>
-        <td>{{client?.promesseClient.depot}}</td>
-      </tr>
-
-          <th scope="row"></th>
-          <td><button type="button" class="btn btn-primary">Primary</button></td>
-          <td><button type="button" class="btn btn-primary">Primary</button></td>
-          <td><button type="button" class="btn btn-primary">Primary</button></td>
-
-    </tbody>
-  </table>
-  </div>
+                <tr>
+                    <th scope="row"></th>
+                    <td><button type="button" class="btn btn-primary" >Save Situation</button></td>
+                    <td><button type="button" class="btn btn-primary" >Save Promesse</button></td>
+                    <td><button type="button" class="btn btn-primary" >Save KPI</button></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-  </div>
-  </div>
+</div>
+
+

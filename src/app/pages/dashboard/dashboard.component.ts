@@ -4,7 +4,11 @@ import { ClientService } from '../../services/Client.service';
 import { ClientDataService } from '../../services/clientdata.service';
 import { Subscription } from 'rxjs';
 import { Client } from '../../Models/Client.model';
+import {Adresse} from '../../Models/adresse.model';
 import {HttpErrorResponse} from '@angular/common/http';
+import {PremiereVisite} from '../../Models/PremiereVisite.model';
+import {DeuxiemeVisite} from '../../Models/DeuxiemeVisite.model';
+import {PromesseClient} from '../../Models/PromesseClient.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,7 +23,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
     selectedDate2: string;
     editDate1 = false; // Add this property
     editDate2 = false;
-
+    premierevisite : PremiereVisite;
+    deuxiemevisite : DeuxiemeVisite;
+    promesseclient : PromesseClient;
     constructor(
         private clientService: ClientService,
         private route: ActivatedRoute,
