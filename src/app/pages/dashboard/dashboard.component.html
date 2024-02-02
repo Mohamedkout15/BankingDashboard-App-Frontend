@@ -91,171 +91,171 @@
                 <tr>
                     <th scope="row">Placements</th>
                     <td>
-                        <ng-container *ngIf="client && client.premiereVisite && client.premiereVisite.placements !== null; else inputField">
+                        <ng-container *ngIf="client?.premiereVisite?.placements !== null; else inputField1">
                             {{ client?.premiereVisite?.placements }}DT
                         </ng-container>
-                        <ng-template #inputField>
-                            <input />
+                        <ng-template #inputField1>
+                            <input [(ngModel)]="n1" (blur)="editinput = false" (dblclick)="editinput = true" />
                         </ng-template>
                     </td>
                     <td>
-                        <ng-container *ngIf="client && client.deuxiemeVisite && client.deuxiemeVisite.placements !== null; else inputField">
+                        <ng-container *ngIf="client?.deuxiemeVisite?.placements !== null; else inputField2">
                             {{ client?.deuxiemeVisite?.placements }}DT
                         </ng-container>
-                        <ng-template #inputField>
-                            <input  />
+                        <ng-template #inputField2>
+                            <input [(ngModel)]="n2" (blur)="editinput = false" (dblclick)="editinput = true"  />
                         </ng-template>
                     </td>
                     <td>
-                        <ng-container *ngIf="client && client.promesseClient && client.promesseClient.placements !== null; else inputField">
+                        <ng-container *ngIf="client?.promesseClient?.placements !== null; else inputField3">
                             {{ client?.promesseClient?.placements }}DT
                         </ng-container>
-                        <ng-template #inputField>
-                            <input  />
+                        <ng-template #inputField3>
+                            <input [(ngModel)]="n3" (blur)="editinput = false" (dblclick)="editinput = true"  />
                         </ng-template>
                     </td>
                 </tr>
                 <tr>
                     <th scope="row">Chiffre d'affaire</th>
                     <td>
-                        <ng-container *ngIf="client && client.premiereVisite && client.premiereVisite.chiffreAffaire !== null; else inputField">
+                        <ng-container *ngIf="client && client.premiereVisite && client.premiereVisite.chiffreAffaire !== null; else inputField4">
                             {{ client?.premiereVisite?.chiffreAffaire }}DT
                         </ng-container>
-                        <ng-template #inputField>
-                            <input  />
+                        <ng-template #inputField4>
+                            <input [(ngModel)]="n4" (blur)="editinput = false" (dblclick)="editinput = true"  />
                         </ng-template>
                     </td>
                     <td>
-                        <ng-container *ngIf="client && client.deuxiemeVisite && client.deuxiemeVisite.chiffreAffaire !== null; else inputField">
+                        <ng-container *ngIf="client && client.deuxiemeVisite && client.deuxiemeVisite.chiffreAffaire !== null; else inputField5">
                             {{ client?.deuxiemeVisite?.chiffreAffaire }}DT
                         </ng-container>
-                        <ng-template #inputField>
-                            <input  />
+                        <ng-template #inputField5>
+                            <input [(ngModel)]="n5" (blur)="editinput = false" (dblclick)="editinput = true" />
                         </ng-template>
                     </td>
                     <td>
-                        <ng-container *ngIf="client && client.promesseClient && client.promesseClient.chiffreAffaire !== null; else inputField">
+                        <ng-container *ngIf="client && client.promesseClient && client.promesseClient.chiffreAffaire !== null; else inputField6">
                             {{ client?.promesseClient?.chiffreAffaire }}DT
                         </ng-container>
-                        <ng-template #inputField>
-                            <input  />
+                        <ng-template #inputField6>
+                            <input [(ngModel)]="n6" (blur)="editinput = false" (dblclick)="editinput = true"  />
                         </ng-template>
                     </td>
                 </tr>
                 <tr>
                     <th scope="row">Impayés</th>
                     <td>
-                        <ng-container *ngIf="client && client.premiereVisite && client.premiereVisite.impayes !== null; else inputField">
+                        <ng-container *ngIf="client && client.premiereVisite && client.premiereVisite.impayes !== null; else inputField7">
                             {{ client?.premiereVisite?.impayes }}DT
                         </ng-container>
-                        <ng-template #inputField>
-                            <input />
+                        <ng-template #inputField7>
+                            <input [(ngModel)]="n7" (blur)="editinput = false" (dblclick)="editinput = true" />
                         </ng-template>
                     </td>
                     <td>
-                        <ng-container *ngIf="client && client.deuxiemeVisite && client.deuxiemeVisite.impayes !== null; else inputField">
+                        <ng-container *ngIf="client && client.deuxiemeVisite && client.deuxiemeVisite.impayes !== null; else inputField8">
                             {{ client?.deuxiemeVisite?.impayes }}DT
                         </ng-container>
-                        <ng-template #inputField>
-                            <input />
+                        <ng-template #inputField8>
+                            <input [(ngModel)]="n8" (blur)="editinput = false" (dblclick)="editinput = true" />
                         </ng-template>
                     </td>
                     <td>
-                        <ng-container *ngIf="client && client.promesseClient && client.promesseClient.impayes !== null; else inputField">
+                        <ng-container *ngIf="client && client.promesseClient && client.promesseClient.impayes !== null; else inputField9">
                             {{ client?.promesseClient?.impayes }}DT
                         </ng-container>
-                        <ng-template #inputField>
-                            <input />
+                        <ng-template #inputField9>
+                            <input [(ngModel)]="n9" (blur)="editinput = false" (dblclick)="editinput = true" />
                         </ng-template>
                     </td>
                 </tr>
-                <tr class="bg-warning">
+                <tr >
                     <th scope="row">Engagements</th>
                     <td>
-                        <ng-container *ngIf="client && client.premiereVisite && client.premiereVisite.engagements !== null;  else inputField">
+                        <ng-container *ngIf="client && client.premiereVisite && client.premiereVisite.engagements !== null;  else inputField10">
                             {{ client?.premiereVisite?.engagements }}DT
                         </ng-container>
-                        <ng-template #inputField>
-                            <input  />
+                        <ng-template #inputField10>
+                            <input [(ngModel)]="n10" (blur)="editinput = false" (dblclick)="editinput = true"  />
                         </ng-template>
                     </td>
                     <td>
-                        <ng-container *ngIf="client && client.deuxiemeVisite && client.deuxiemeVisite.engagements !== null;else inputField">
+                        <ng-container *ngIf="client && client.deuxiemeVisite && client.deuxiemeVisite.engagements !== null;else inputField11">
                             {{ client?.deuxiemeVisite?.engagements }}DT
                         </ng-container>
-                        <ng-template #inputField>
-                            <input  />
+                        <ng-template #inputField11>
+                            <input  [(ngModel)]="n11" (blur)="editinput = false" (dblclick)="editinput = true" />
                         </ng-template>
                     </td>
                     <td>
-                        <ng-container *ngIf="client && client.promesseClient && client.promesseClient.engagements !== null; else inputField">
+                        <ng-container *ngIf="client && client.promesseClient && client.promesseClient.engagements !== null; else inputField12">
                             {{ client?.promesseClient?.engagements }}DT
                         </ng-container>
-                        <ng-template #inputField>
-                            <input  />
+                        <ng-template #inputField12>
+                            <input  [(ngModel)]="n12" (blur)="editinput = false" (dblclick)="editinput = true" />
                         </ng-template>
                     </td>
                 </tr>
                 <tr>
                     <th scope="row">Debit</th>
                     <td>
-                        <ng-container *ngIf="client && client.premiereVisite && client.premiereVisite.debit !== null; else inputField">
+                        <ng-container *ngIf="client && client.premiereVisite && client.premiereVisite.debit !== null; else inputField13">
                             {{ client?.premiereVisite?.debit }}DT
                         </ng-container>
-                        <ng-template #inputField>
-                            <input  />
+                        <ng-template #inputField13>
+                            <input [(ngModel)]="n13" (blur)="editinput = false" (dblclick)="editinput = true"  />
                         </ng-template>
                     </td>
                     <td>
-                        <ng-container *ngIf="client && client.deuxiemeVisite && client.deuxiemeVisite.debit !== null; else inputField">
+                        <ng-container *ngIf="client && client.deuxiemeVisite && client.deuxiemeVisite.debit !== null; else inputField14">
                             {{ client?.deuxiemeVisite?.debit }}DT
                         </ng-container>
-                        <ng-template #inputField>
-                            <input  />
+                        <ng-template #inputField14>
+                            <input [(ngModel)]="n14" (blur)="editinput = false" (dblclick)="editinput = true"  />
                         </ng-template>
                     </td>
                     <td>
-                        <ng-container *ngIf="client && client.promesseClient && client.promesseClient.debit !== null; else inputField">
+                        <ng-container *ngIf="client && client.promesseClient && client.promesseClient.debit !== null; else inputField15">
                             {{ client?.promesseClient?.debit }}DT
                         </ng-container>
-                        <ng-template #inputField>
-                            <input  />
+                        <ng-template #inputField15>
+                            <input [(ngModel)]="n15" (blur)="editinput = false" (dblclick)="editinput = true"  />
                         </ng-template>
                     </td>
                 </tr>
                 <tr>
                     <th scope="row">Depot</th>
                     <td>
-                        <ng-container *ngIf="client && client.premiereVisite && client.premiereVisite.depot !== null; else inputField">
+                        <ng-container *ngIf="client && client.premiereVisite && client.premiereVisite.depot !== null; else inputField16">
                             {{ client?.premiereVisite?.depot }}DT
                         </ng-container>
-                        <ng-template #inputField>
-                            <input  />
+                        <ng-template #inputField16>
+                            <input [(ngModel)]="n16" (blur)="editinput = false" (dblclick)="editinput = true"  />
                         </ng-template>
                     </td>
                     <td>
-                        <ng-container *ngIf="client && client.deuxiemeVisite && client.deuxiemeVisite.depot !== null; else inputField">
+                        <ng-container *ngIf="client && client.deuxiemeVisite && client.deuxiemeVisite.depot !== null; else inputField17">
                             {{ client?.deuxiemeVisite?.depot }}DT
                         </ng-container>
-                        <ng-template #inputField>
-                            <input  />
+                        <ng-template #inputField17>
+                            <input [(ngModel)]="n17" (blur)="editinput = false" (dblclick)="editinput = true"  />
                         </ng-template>
                     </td>
                     <td>
-                        <ng-container *ngIf="client && client.promesseClient && client.promesseClient.depot !== null; else inputField">
+                        <ng-container *ngIf="client && client.promesseClient && client.promesseClient.depot !== null; else inputField18">
                             {{ client?.promesseClient?.depot }}DT
                         </ng-container>
-                        <ng-template #inputField>
-                            <input />
+                        <ng-template #inputField18>
+                            <input [(ngModel)]="n18" (blur)="editinput = false" (dblclick)="editinput = true" />
                         </ng-template>
                     </td>
                 </tr>
 
                 <tr>
                     <th scope="row"></th>
-                    <td><button type="button" class="btn btn-primary" >Save Situation</button></td>
-                    <td><button type="button" class="btn btn-primary" >Save Promesse</button></td>
-                    <td><button type="button" class="btn btn-primary" >Save KPI</button></td>
+                    <td><button type="button" class="btn btn-primary" (click)="executeAttdprv()" >Save Situation</button></td>
+                    <td><button type="button" class="btn btn-primary" (click)="executeAttprc()" >Save Promesse</button></td>
+                    <td><button type="button" class="btn btn-primary" (click)="executeAttdxv()">Save KPI</button></td>
                 </tr>
                 </tbody>
             </table>
