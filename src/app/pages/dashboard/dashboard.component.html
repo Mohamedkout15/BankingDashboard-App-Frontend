@@ -1,64 +1,40 @@
-<div class="header pb-8 pt-5 pt-md-8" style="background-image:linear-gradient(to bottom, #E5E5EA, #F7F7F9);">
-<div class="container-fluid">
-              <div class="card">
-                  <div class="card-body">
-                      <h5 class="card-title">Dates des visites :</h5>
-                      <p class="card-text">
-                          Date 1ére visite:
-                          <span
-                                  *ngIf="!editDate1; else dateSelector1"
-                                  (dblclick)="editDate1 = true"
-                                  id="date1v"
-                                  tabindex="0"
-                                  (blur)="editDate1 = false"
-                          >
-        {{ client?.premiereVisite.datePrVisite || 'No date set' }}
-      </span>
-                          <ng-template #dateSelector1>
-                              <input
-                                      *ngIf="editDate1 || client?.premiereVisite.datePrVisite === null; else displayDate1"
-                                      type="date"
-                                      [(ngModel)]="selectedDate1"
-                                      (keyup.enter)="setDatePrvisite(clientId, selectedDate1)"
-                                      (blur)="editDate1 = false"
-                              />
-                              <ng-template #displayDate1>
-                                  <span>{{ client?.premiereVisite.datePrVisite }}</span>
-                              </ng-template>
-                          </ng-template>
-                      </p>
-                      <p class="card-text">
-                          Date 2éme visite:
-                          <span
-                                  *ngIf="!editDate2; else dateSelector2"
-                                  (dblclick)="editDate2 = true"
-                                  id="date2v"
-                                  tabindex="0"
-                                  (blur)="editDate2 = false"
-                          >
-        {{ client?.deuxiemeVisite.dateDxVisite || 'No date set' }}
-      </span>
-                          <ng-template #dateSelector2>
-                              <input
-                                      *ngIf="editDate2 || client?.deuxiemeVisite.dateDxVisite === null; else displayDate2"
-                                      type="date"
-                                      [(ngModel)]="selectedDate2"
-                                      (keyup.enter)="setDatedxvisite(clientId, selectedDate2)"
-                                      (blur)="editDate2 = false"
-                              />
-                              <ng-template #displayDate2>
-                                  <span>{{ client?.deuxiemeVisite.dateDxVisite }}</span>
-                              </ng-template>
-                          </ng-template>
-                      </p>
-                  </div>
-              </div>
-          </div>
-      </div>
-<div class="container-fluid">
-      <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Information Client :</h5>
+<div class="header pb-8 pt-5 pt-md-8" style="background-image: linear-gradient(to bottom, #E5E5EA, #F7F7F9);">
+    <div class="container-fluid mb-4" *ngIf="client != null">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Dates des visites :</h5>
+                <p class="card-text">
+                    <strong>Date 1ère visite:</strong>
+                    <span *ngIf="!editDate1; else dateSelector1" (dblclick)="editDate1 = true" tabindex="0" (blur)="editDate1 = false">
+            {{ client?.premiereVisite.datePrVisite | date: 'dd/MM/yyyy' || 'No date set' }}
+          </span>
+                    <ng-template #dateSelector1>
+                        <input *ngIf="editDate1 || client?.premiereVisite.datePrVisite === null; else displayDate1" type="date" [(ngModel)]="selectedDate1" (keyup.enter)="setDatePrvisite(clientId, selectedDate1)" (blur)="editDate1 = false" />
+                        <ng-template #displayDate1>
+                            <span>{{ client?.premiereVisite.datePrVisite | date: 'dd/MM/yyyy' }}</span>
+                        </ng-template>
+                    </ng-template>
+                </p>
+                <p class="card-text">
+                    <strong>Date 2ème visite:</strong>
+                    <span *ngIf="!editDate2; else dateSelector2" (dblclick)="editDate2 = true" tabindex="0" (blur)="editDate2 = false">
+            {{ client?.deuxiemeVisite.dateDxVisite | date: 'dd/MM/yyyy' || 'No date set' }}
+          </span>
+                    <ng-template #dateSelector2>
+                        <input *ngIf="editDate2 || client?.deuxiemeVisite.dateDxVisite === null; else displayDate2" type="date" [(ngModel)]="selectedDate2" (keyup.enter)="setDatedxvisite(clientId, selectedDate2)" (blur)="editDate2 = false" />
+                        <ng-template #displayDate2>
+                            <span>{{ client?.deuxiemeVisite.dateDxVisite | date: 'dd/MM/yyyy' }}</span>
+                        </ng-template>
+                    </ng-template>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid mb-4" *ngIf="client != null">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Information Client :</h5>
         <p class="card-text">ID: <span id="idClient">{{client?.idClient}}</span></p>
         <p class="card-text">Nom Entreprise: <span id="nomEntreprise">{{client?.nomEntreprise}}</span></p>
         <p class="card-text">Email: <span id="email">{{client?.email}}</span></p>
@@ -70,11 +46,12 @@
       </div>
     </div>
   </div>
-<div class="container-fluid">
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">Tableau de données des visites :</h5>
-            <table class="table table-hover table-bordered">
+    <div class="container-fluid" *ngIf="client != null">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Tableau de données des visites :</h5>
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered">
                 <thead>
                 <tr>
                     <th scope="col"></th>
@@ -254,9 +231,10 @@
                     <td><button type="button" class="btn btn-primary" (click)="executeAttdxv()">Save KPI</button></td>
                 </tr>
                 </tbody>
-            </table>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-
 
