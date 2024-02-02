@@ -144,4 +144,17 @@ export class DashboardComponent implements OnInit, OnDestroy {
             console.error(`Status: ${error.status}, ${error.statusText}`);
         }
     }
+    private getRowColorClassByPercentage(promesse: number, kpi: number | null): string {
+        if (promesse !== null && kpi !== null) {
+            const promessePercentage = promesse / 100;
+            if (promessePercentage <= kpi) {
+                return 'table-success';
+            } else if (promessePercentage > kpi && kpi >= (promessePercentage - 0.1)) {
+                return 'table-warning';
+            } else {
+                return 'table-danger';
+            }
+        }
+        return '';
+    }
 }
