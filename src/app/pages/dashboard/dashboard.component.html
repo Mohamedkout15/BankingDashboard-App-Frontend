@@ -84,7 +84,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
+                <tr  [ngClass]="getRowColorClassByPercentage(client?.promesseClient?.placements,client?.deuxiemeVisite?.placements)">
                     <th scope="row">Placements</th>
                     <td>
                         <ng-container *ngIf="client?.premiereVisite?.placements !== null; else inputField1">
@@ -111,8 +111,8 @@
                         </ng-template>
                     </td>
                 </tr>
-                <tr>
-                    <th scope="row">Chiffre d'affaire</th>
+                <tr [ngClass]="getRowColorClassByPercentage(client?.promesseClient?.chiffreAffaire,client?.deuxiemeVisite?.chiffreAffaire)">
+                    <th scope="row" >Chiffre d'affaire</th>
                     <td>
                         <ng-container *ngIf="client && client.premiereVisite && client.premiereVisite.chiffreAffaire !== null; else inputField4">
                             {{ client?.premiereVisite?.chiffreAffaire }}DT
@@ -138,8 +138,8 @@
                         </ng-template>
                     </td>
                 </tr>
-                <tr>
-                    <th scope="row">Impayés</th>
+                <tr [ngClass]="getRowColorClassByPercentage(client?.promesseClient?.impayes,client?.deuxiemeVisite?.impayes)">
+                    <th scope="row" >Impayés</th>
                     <td>
                         <ng-container *ngIf="client && client.premiereVisite && client.premiereVisite.impayes !== null; else inputField7">
                             {{ client?.premiereVisite?.impayes }}DT
@@ -165,8 +165,8 @@
                         </ng-template>
                     </td>
                 </tr>
-                <tr >
-                    <th scope="row">Engagements</th>
+                <tr [ngClass]="getRowColorClassByPercentage(client?.promesseClient?.engagements,client?.deuxiemeVisite?.engagements)">
+                    <th scope="row" >Engagements</th>
                     <td>
                         <ng-container *ngIf="client && client.premiereVisite && client.premiereVisite.engagements !== null;  else inputField10">
                             {{ client?.premiereVisite?.engagements }}DT
@@ -192,8 +192,8 @@
                         </ng-template>
                     </td>
                 </tr>
-                <tr>
-                    <th scope="row">Debit</th>
+                <tr [ngClass]="getRowColorClassByPercentage(client?.promesseClient?.debit,client?.deuxiemeVisite?.debit)">
+                    <th scope="row" >Debit</th>
                     <td>
                         <ng-container *ngIf="client && client.premiereVisite && client.premiereVisite.debit !== null; else inputField13">
                             {{ client?.premiereVisite?.debit }}DT
@@ -219,7 +219,7 @@
                         </ng-template>
                     </td>
                 </tr>
-                <tr>
+                <tr [ngClass]="getRowColorClassByPercentage(client?.promesseClient?.depot,client?.deuxiemeVisite?.depot)">
                     <th scope="row">Depot</th>
                     <td>
                         <ng-container *ngIf="client && client.premiereVisite && client.premiereVisite.depot !== null; else inputField16">
