@@ -51,7 +51,17 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.routeSubscription = this.clientDataService.currentClientId.subscribe((id) => {
             this.clientId = id;
             this.fetchClientData();
+            this.initvalues();
+            console.log([this.n1,this.n2,this.n3]);
         });
+        this.initvalues();
+
+    }
+    ngOnDestroy() {
+        this.routeSubscription.unsubscribe();
+        this.initvalues();
+    }
+    initvalues(){
         if (this.client && this.client.premiereVisite && this.client.premiereVisite.placements !== null) {
             this.n1 = this.client.premiereVisite.placements;
         }
@@ -105,17 +115,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         }
         if (this.client && this.client.deuxiemeVisite && this.client.deuxiemeVisite.depot !== null) {
             this.n18 = this.client.deuxiemeVisite.depot;
-        }
-    }
-
-    ngOnDestroy() {
-        this.routeSubscription.unsubscribe();
-    }
-    setNValue(propertyName: string, value: number): void {
-        if (value !== null && value !== undefined) {
-            this[propertyName] = value;
-        }
-    }
+        }    }
     fetchClientData() {
         this.clientService.getClientById(this.clientId).subscribe(
             (data: Client) => {
@@ -233,8 +233,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
         const fileName = 'client_data.xlsx';
         XLSX.writeFile(wb, fileName);
     }
-
-// Helper function to flatten nested objects
     flattenObject(obj: any): any {
         const result = {};
 
