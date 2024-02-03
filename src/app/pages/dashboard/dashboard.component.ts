@@ -5,6 +5,7 @@ import { ClientDataService } from '../../services/clientdata.service';
 import { Subscription } from 'rxjs';
 import { Client } from '../../Models/Client.model';
 import { HttpErrorResponse } from '@angular/common/http';
+import * as XLSX from 'xlsx';
 
 @Component({
     selector: 'app-dashboard',
@@ -51,12 +52,70 @@ export class DashboardComponent implements OnInit, OnDestroy {
             this.clientId = id;
             this.fetchClientData();
         });
+        if (this.client && this.client.premiereVisite && this.client.premiereVisite.placements !== null) {
+            this.n1 = this.client.premiereVisite.placements;
+        }
+        if (this.client && this.client.promesseClient && this.client.promesseClient.placements !== null) {
+            this.n2 = this.client.promesseClient.placements;
+        }
+        if (this.client && this.client.deuxiemeVisite && this.client.deuxiemeVisite.placements !== null) {
+            this.n3 = this.client.deuxiemeVisite.placements;
+        }
+        if (this.client && this.client.premiereVisite && this.client.premiereVisite.chiffreAffaire !== null) {
+            this.n4 = this.client.premiereVisite.chiffreAffaire;
+        }
+        if (this.client && this.client.promesseClient && this.client.promesseClient.chiffreAffaire !== null) {
+            this.n5 = this.client.promesseClient.chiffreAffaire;
+        }
+        if (this.client && this.client.promesseClient && this.client.promesseClient.chiffreAffaire !== null) {
+            this.n6 = this.client.deuxiemeVisite.chiffreAffaire;
+        }
+        if (this.client && this.client.premiereVisite && this.client.premiereVisite.impayes !== null) {
+            this.n7 = this.client.premiereVisite.impayes;
+        }
+        if (this.client && this.client.promesseClient && this.client.promesseClient.impayes !== null) {
+            this.n8 = this.client.promesseClient.impayes;
+        }
+        if (this.client && this.client.deuxiemeVisite && this.client.deuxiemeVisite.impayes !== null) {
+            this.n9 = this.client.deuxiemeVisite.impayes;
+        }
+        if (this.client && this.client.premiereVisite && this.client.premiereVisite.engagements !== null) {
+            this.n10 = this.client.premiereVisite.engagements;
+        }
+        if (this.client && this.client.promesseClient && this.client.promesseClient.engagements !== null) {
+            this.n11 = this.client.promesseClient.engagements;
+        }
+        if (this.client && this.client.deuxiemeVisite && this.client.deuxiemeVisite.engagements !== null) {
+            this.n12 = this.client.deuxiemeVisite.engagements;
+        }
+        if (this.client && this.client.premiereVisite && this.client.premiereVisite.debit !== null) {
+            this.n13 = this.client.deuxiemeVisite.engagements;
+        }
+        if (this.client && this.client.promesseClient && this.client.promesseClient.debit !== null) {
+            this.n14 = this.client.promesseClient.debit;
+        }
+        if (this.client && this.client.deuxiemeVisite && this.client.deuxiemeVisite.debit !== null) {
+            this.n15 = this.client.deuxiemeVisite.debit;
+        }
+        if (this.client && this.client.premiereVisite && this.client.premiereVisite.depot !== null) {
+            this.n16 = this.client.premiereVisite.depot;
+        }
+        if (this.client && this.client.promesseClient && this.client.promesseClient.depot !== null) {
+            this.n17 = this.client.promesseClient.depot;
+        }
+        if (this.client && this.client.deuxiemeVisite && this.client.deuxiemeVisite.depot !== null) {
+            this.n18 = this.client.deuxiemeVisite.depot;
+        }
     }
 
     ngOnDestroy() {
         this.routeSubscription.unsubscribe();
     }
-
+    setNValue(propertyName: string, value: number): void {
+        if (value !== null && value !== undefined) {
+            this[propertyName] = value;
+        }
+    }
     fetchClientData() {
         this.clientService.getClientById(this.clientId).subscribe(
             (data: Client) => {
@@ -158,4 +217,47 @@ export class DashboardComponent implements OnInit, OnDestroy {
         }
         return '';
     }
+
+    generateExcelFile(client: Client): void {
+        // Flatten the nested structure of the client object
+        const flattenedClient = this.flattenObject(client);
+
+        // Create a worksheet
+        const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet([flattenedClient]);
+
+        // Create a workbook with the worksheet
+        const wb: XLSX.WorkBook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, 'Client Data');
+
+        // Save the workbook to an Excel file
+        const fileName = 'client_data.xlsx';
+        XLSX.writeFile(wb, fileName);
+    }
+
+// Helper function to flatten nested objects
+    flattenObject(obj: any): any {
+        const result = {};
+
+        function recurse(current: any, prop: string | number): void {
+            if (current instanceof Object) {
+                for (const p in current) {
+                    if (current.hasOwnProperty(p)) {
+                        recurse(current[p], prop + '.' + p);
+                    }
+                }
+            } else {
+                result[prop] = current;
+            }
+        }
+
+        for (const prop in obj) {
+            if (obj.hasOwnProperty(prop)) {
+                recurse(obj[prop], prop);
+            }
+        }
+
+        return result;
+    }
+
+
 }
