@@ -52,7 +52,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
             this.clientId = id;
             this.fetchClientData();
             this.initvalues();
-            console.log([this.n1,this.n2,this.n3]);
+            console.log([this.n1, this.n2, this.n3]);
         });
         this.initvalues();
 
@@ -61,7 +61,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.routeSubscription.unsubscribe();
         this.initvalues();
     }
-    initvalues(){
+    initvalues() {
         if (this.client && this.client.premiereVisite && this.client.premiereVisite.placements !== null) {
             this.n1 = this.client.premiereVisite.placements;
         }
