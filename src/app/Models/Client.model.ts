@@ -12,7 +12,7 @@ export interface Client {
   adresse: Adresse;
   matriculeFiscale: string;
   numtel: string;
-  deuxiemeVisite: DeuxiemeVisite;
   premiereVisite: PremiereVisite;
+  deuxiemeVisite: DeuxiemeVisite;
   promesseClient: PromesseClient;
 }
