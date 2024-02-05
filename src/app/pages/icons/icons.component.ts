@@ -9,8 +9,6 @@ import {ClientService} from '../../services/Client.service';
 })
 export class IconsComponent implements OnInit {
 
-  clientForm: FormGroup;
-
   constructor(private fb: FormBuilder, private clientService: ClientService) {
     this.clientForm = this.fb.group({
       idClient: ['', Validators.required],
@@ -27,6 +25,35 @@ export class IconsComponent implements OnInit {
     });
   }
 
+  clientForm: FormGroup;
+
+ governorates: string[] = [
+    'Ariana',
+    'Beja',
+    'Ben Arous',
+    'Bizerte',
+    'Gabes',
+    'Gafsa',
+    'Jendouba',
+    'Kairouan',
+    'Kasserine',
+    'Kebili',
+    'Kef',
+    'Mahdia',
+    'Manouba',
+    'Medenine',
+    'Monastir',
+    'Nabeul',
+    'Sfax',
+    'Sidi Bouzid',
+    'Siliana',
+    'Sousse',
+    'Tataouine',
+    'Tozeur',
+    'Tunis',
+    'Zaghouan'
+  ];
+
   onSubmit() {
     if (this.clientForm.valid) {
       const newClient = this.clientForm.value;
@@ -42,8 +69,6 @@ export class IconsComponent implements OnInit {
       );
     }
   }
-
-
   ngOnInit() {
   }
 }
