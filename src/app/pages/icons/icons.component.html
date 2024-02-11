@@ -67,9 +67,25 @@
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="form-group">
-                            <label for="ville">City</label>
-                            <select id="ville" formControlName="ville" class="form-control form-control-alternative">
+                            <label class="form-control-label" for="Gouvernorat">Gouvernorat</label>
+                            <select id="Gouvernorat" formControlName="selectedGovernorate" class="form-control form-control-alternative" (change)="onGovernorateChange($event.target.value)">
                                 <option *ngFor="let governorate of governorates" [value]="governorate">{{ governorate }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label class="form-control-label" for="Ville">Ville</label>
+                            <select id="Ville" formControlName="selectedCity" class="form-control form-control-alternative">
+                                <option *ngFor="let city of selectedGovernorateCities" [value]="city">{{ city }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label class="form-control-label" for="codePostal">Postal code</label>
+                            <select id="codePostal" formControlName="selectedCity" class="form-control form-control-alternative">
+                                <option *ngFor="let city of governorates" [value]="postalCodesOfTunisia[city]">{{ postalCodesOfTunisia[city] }}</option>
                             </select>
                         </div>
                     </div>
@@ -79,18 +95,13 @@
                             <input type="text" id="pays" formControlName="pays" class="form-control form-control-alternative" placeholder="Country">
                         </div>
                     </div>
-                    <div class="col-lg-4">
-                        <div class="form-group">
-                            <label class="form-control-label" for="codePostal">Postal code</label>
-                            <input type="number" id="codePostal" formControlName="codePostal" class="form-control form-control-alternative" placeholder="Postal code">
-                        </div>
-                    </div>
                 </div>
             </div>
+
             <button type="submit" [disabled]="!clientForm.valid" class="btn btn-primary">Add Client</button>
         </form>
-    </div>
-    </div>
 
-</div>
+
+
+
 
