@@ -1,6 +1,7 @@
 import {DeuxiemeVisite} from './DeuxiemeVisite.model';
 import {PremiereVisite} from './PremiereVisite.model';
 import {PromesseClient} from './PromesseClient.model';
+import {Adresse} from './adresse.model';
 
 export interface Client {
   id: number;
@@ -8,10 +9,10 @@ export interface Client {
   nomEntreprise: string;
   email: string;
   domaine: string;
-  adresse: string;
+  adresse: Adresse;
   matriculeFiscale: string;
   numtel: string;
-  deuxiemeVisite: DeuxiemeVisite;
   premiereVisite: PremiereVisite;
+  deuxiemeVisite: DeuxiemeVisite;
   promesseClient: PromesseClient;
 }

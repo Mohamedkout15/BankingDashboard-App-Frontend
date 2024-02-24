@@ -1,4 +1,3 @@
-import {Client} from './Client.model';
 
 export interface PromesseClient {
   id: number;

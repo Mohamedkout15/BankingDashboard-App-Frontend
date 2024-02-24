@@ -1,19 +1,44 @@
-<div class="header  pb-8 pt-5 pt-md-8">
-  <div class="container-fluid">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Dates des visites :</h5>
-        <p class="card-text">Date 1ére visite: <span id="date1v">{{client?.premiereVisite.datePrVisite}}</span></p>
-        <p class="card-text">Date 2éme visite: <span id="date2v">{{client?.deuxiemeVisite.dateDxVisite}}</span></p>
-      </div>
+<div class="header pb-8 pt-5 pt-md-8" style="background-image: linear-gradient(to bottom, #E5E5EA, #F7F7F9);">
+    <div class="container-fluid mb-4" *ngIf="client != null">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Dates des visites :</h5>
+                <p class="card-text">
+                    <strong>Date 1ère visite:</strong>
+                    <span *ngIf="!editDate1; else dateSelector1" (dblclick)="editDate1 = true" tabindex="0" (blur)="editDate1 = false">
+            {{ client?.premiereVisite.datePrVisite | date: 'dd/MM/yyyy' || 'No date set' }}
+          </span>
+                    <ng-template #dateSelector1>
+                        <input *ngIf="editDate1 || client?.premiereVisite.datePrVisite === null; else displayDate1" type="date" [(ngModel)]="selectedDate1" (keyup.enter)="setDatePrvisite(clientId, selectedDate1)" (blur)="editDate1 = false" />
+                        <ng-template #displayDate1>
+                            <span>{{ client?.premiereVisite.datePrVisite | date: 'dd/MM/yyyy' }}</span>
+                        </ng-template>
+                    </ng-template>
+                </p>
+                <p class="card-text">
+                    <strong>Date 2ème visite:</strong>
+                    <span *ngIf="!editDate2; else dateSelector2" (dblclick)="editDate2 = true" tabindex="0" (blur)="editDate2 = false">
+            {{ client?.deuxiemeVisite.dateDxVisite | date: 'dd/MM/yyyy' || 'No date set' }}
+          </span>
+                    <ng-template #dateSelector2>
+                        <input *ngIf="editDate2 || client?.deuxiemeVisite.dateDxVisite === null; else displayDate2" type="date" [(ngModel)]="selectedDate2" (keyup.enter)="setDatedxvisite(clientId, selectedDate2)" (blur)="editDate2 = false" />
+                        <ng-template #displayDate2>
+                            <span>{{ client?.deuxiemeVisite.dateDxVisite | date: 'dd/MM/yyyy' }}</span>
+                        </ng-template>
+                    </ng-template>
+                </p>
+            </div>
+        </div>
     </div>
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Information Client :</h5>
+
+    <div class="container-fluid mb-4" *ngIf="client != null">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Information Client :</h5>
         <p class="card-text">ID: <span id="idClient">{{client?.idClient}}</span></p>
         <p class="card-text">Nom Entreprise: <span id="nomEntreprise">{{client?.nomEntreprise}}</span></p>
         <p class="card-text">Email: <span id="email">{{client?.email}}</span></p>
-        <p class="card-text">Adresse: <span id="adresse">{{client?.adresse}}</span></p>
+        <p class="card-text">Adresse: <span id="adresse">{{client?.adresse.codepostal}} {{client?.adresse.adresse}} {{client?.adresse.ville}} {{client?.adresse.gouvernerat}} {{client?.adresse.pays}}</span></p>
         <p class="card-text">Secteur d'activité de l'entreprise: <span id="domaine">{{client?.domaine}}</span></p>
         <p class="card-text">Matricule Fiscale: <span id="matriculeFiscale">{{client?.matriculeFiscale}}</span></p>
         <p class="card-text">Numéro de téléphone: <span id="numtel">{{client?.numtel}}</span></p>
@@ -21,60 +46,196 @@
       </div>
     </div>
   </div>
-  <div class="container-fluid">
-  <div class="card">
-  <div class="card-body">
-  <table class="table table-hover table-bordered">
-    <thead>
-      <tr>
-        <th scope="col"></th>
-        <th scope="col">Situation</th>
-        <th scope="col">Promesse</th>
-        <th scope="col">KPI</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row" >Placements</th>
-        <td>{{client?.premiereVisite.placements}}</td>
-        <td>{{client?.deuxiemeVisite.placements}}</td>
-        <td>{{client?.promesseClient.placements}}</td>
+    <div class="container-fluid" *ngIf="client != null">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Tableau de données des visites :</h5>
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered">
+                <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Situation</th>
+                    <th scope="col">Promesse</th>
+                    <th scope="col">KPI</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr  [ngClass]="getRowColorClassByPercentage(client?.promesseClient?.placements,client?.deuxiemeVisite?.placements)">
+                    <th scope="row">Placements</th>
+                    <td>
+                        <ng-container *ngIf="client?.premiereVisite?.placements !== null; else inputField1">
+                            {{ client?.premiereVisite?.placements }}DT
+                        </ng-container>
+                        <ng-template #inputField1>
+                            <input [(ngModel)]="n1" (blur)="editinput = false" (dblclick)="editinput = true" />
+                        </ng-template>
+                    </td>
+                    <td>
+                        <ng-container *ngIf="client?.deuxiemeVisite?.placements !== null; else inputField2">
+                            {{ client?.deuxiemeVisite?.placements }}DT
+                        </ng-container>
+                        <ng-template #inputField2>
+                            <input [(ngModel)]="n2" (blur)="editinput = false" (dblclick)="editinput = true"  />
+                        </ng-template>
+                    </td>
+                    <td>
+                        <ng-container *ngIf="client?.promesseClient?.placements !== null; else inputField3">
+                            {{ client?.promesseClient?.placements }}DT
+                        </ng-container>
+                        <ng-template #inputField3>
+                            <input [(ngModel)]="n3" (blur)="editinput = false" (dblclick)="editinput = true"  />
+                        </ng-template>
+                    </td>
+                </tr>
+                <tr [ngClass]="getRowColorClassByPercentage(client?.promesseClient?.chiffreAffaire,client?.deuxiemeVisite?.chiffreAffaire)">
+                    <th scope="row" >Chiffre d'affaire</th>
+                    <td>
+                        <ng-container *ngIf="client && client.premiereVisite && client.premiereVisite.chiffreAffaire !== null; else inputField4">
+                            {{ client?.premiereVisite?.chiffreAffaire }}DT
+                        </ng-container>
+                        <ng-template #inputField4>
+                            <input [(ngModel)]="n4" (blur)="editinput = false" (dblclick)="editinput = true"  />
+                        </ng-template>
+                    </td>
+                    <td>
+                        <ng-container *ngIf="client && client.deuxiemeVisite && client.deuxiemeVisite.chiffreAffaire !== null; else inputField5">
+                            {{ client?.deuxiemeVisite?.chiffreAffaire }}DT
+                        </ng-container>
+                        <ng-template #inputField5>
+                            <input [(ngModel)]="n5" (blur)="editinput = false" (dblclick)="editinput = true" />
+                        </ng-template>
+                    </td>
+                    <td>
+                        <ng-container *ngIf="client && client.promesseClient && client.promesseClient.chiffreAffaire !== null; else inputField6">
+                            {{ client?.promesseClient?.chiffreAffaire }}DT
+                        </ng-container>
+                        <ng-template #inputField6>
+                            <input [(ngModel)]="n6" (blur)="editinput = false" (dblclick)="editinput = true"  />
+                        </ng-template>
+                    </td>
+                </tr>
+                <tr [ngClass]="getRowColorClassByPercentage(client?.promesseClient?.impayes,client?.deuxiemeVisite?.impayes)">
+                    <th scope="row" >Impayés</th>
+                    <td>
+                        <ng-container *ngIf="client && client.premiereVisite && client.premiereVisite.impayes !== null; else inputField7">
+                            {{ client?.premiereVisite?.impayes }}DT
+                        </ng-container>
+                        <ng-template #inputField7>
+                            <input [(ngModel)]="n7" (blur)="editinput = false" (dblclick)="editinput = true" />
+                        </ng-template>
+                    </td>
+                    <td>
+                        <ng-container *ngIf="client && client.deuxiemeVisite && client.deuxiemeVisite.impayes !== null; else inputField8">
+                            {{ client?.deuxiemeVisite?.impayes }}DT
+                        </ng-container>
+                        <ng-template #inputField8>
+                            <input [(ngModel)]="n8" (blur)="editinput = false" (dblclick)="editinput = true" />
+                        </ng-template>
+                    </td>
+                    <td>
+                        <ng-container *ngIf="client && client.promesseClient && client.promesseClient.impayes !== null; else inputField9">
+                            {{ client?.promesseClient?.impayes }}DT
+                        </ng-container>
+                        <ng-template #inputField9>
+                            <input [(ngModel)]="n9" (blur)="editinput = false" (dblclick)="editinput = true" />
+                        </ng-template>
+                    </td>
+                </tr>
+                <tr [ngClass]="getRowColorClassByPercentage(client?.promesseClient?.engagements,client?.deuxiemeVisite?.engagements)">
+                    <th scope="row" >Engagements</th>
+                    <td>
+                        <ng-container *ngIf="client && client.premiereVisite && client.premiereVisite.engagements !== null;  else inputField10">
+                            {{ client?.premiereVisite?.engagements }}DT
+                        </ng-container>
+                        <ng-template #inputField10>
+                            <input [(ngModel)]="n10" (blur)="editinput = false" (dblclick)="editinput = true"  />
+                        </ng-template>
+                    </td>
+                    <td>
+                        <ng-container *ngIf="client && client.deuxiemeVisite && client.deuxiemeVisite.engagements !== null;else inputField11">
+                            {{ client?.deuxiemeVisite?.engagements }}DT
+                        </ng-container>
+                        <ng-template #inputField11>
+                            <input  [(ngModel)]="n11" (blur)="editinput = false" (dblclick)="editinput = true" />
+                        </ng-template>
+                    </td>
+                    <td>
+                        <ng-container *ngIf="client && client.promesseClient && client.promesseClient.engagements !== null; else inputField12">
+                            {{ client?.promesseClient?.engagements }}DT
+                        </ng-container>
+                        <ng-template #inputField12>
+                            <input  [(ngModel)]="n12" (blur)="editinput = false" (dblclick)="editinput = true" />
+                        </ng-template>
+                    </td>
+                </tr>
+                <tr [ngClass]="getRowColorClassByPercentage(client?.promesseClient?.debit,client?.deuxiemeVisite?.debit)">
+                    <th scope="row" >Debit</th>
+                    <td>
+                        <ng-container *ngIf="client && client.premiereVisite && client.premiereVisite.debit !== null; else inputField13">
+                            {{ client?.premiereVisite?.debit }}DT
+                        </ng-container>
+                        <ng-template #inputField13>
+                            <input [(ngModel)]="n13" (blur)="editinput = false" (dblclick)="editinput = true"  />
+                        </ng-template>
+                    </td>
+                    <td>
+                        <ng-container *ngIf="client && client.deuxiemeVisite && client.deuxiemeVisite.debit !== null; else inputField14">
+                            {{ client?.deuxiemeVisite?.debit }}DT
+                        </ng-container>
+                        <ng-template #inputField14>
+                            <input [(ngModel)]="n14" (blur)="editinput = false" (dblclick)="editinput = true"  />
+                        </ng-template>
+                    </td>
+                    <td>
+                        <ng-container *ngIf="client && client.promesseClient && client.promesseClient.debit !== null; else inputField15">
+                            {{ client?.promesseClient?.debit }}DT
+                        </ng-container>
+                        <ng-template #inputField15>
+                            <input [(ngModel)]="n15" (blur)="editinput = false" (dblclick)="editinput = true"  />
+                        </ng-template>
+                    </td>
+                </tr>
+                <tr [ngClass]="getRowColorClassByPercentage(client?.promesseClient?.depot,client?.deuxiemeVisite?.depot)">
+                    <th scope="row">Depot</th>
+                    <td>
+                        <ng-container *ngIf="client && client.premiereVisite && client.premiereVisite.depot !== null; else inputField16">
+                            {{ client?.premiereVisite?.depot }}DT
+                        </ng-container>
+                        <ng-template #inputField16>
+                            <input [(ngModel)]="n16" (blur)="editinput = false" (dblclick)="editinput = true"  />
+                        </ng-template>
+                    </td>
+                    <td>
+                        <ng-container *ngIf="client && client.deuxiemeVisite && client.deuxiemeVisite.depot !== null; else inputField17">
+                            {{ client?.deuxiemeVisite?.depot }}DT
+                        </ng-container>
+                        <ng-template #inputField17>
+                            <input [(ngModel)]="n17" (blur)="editinput = false" (dblclick)="editinput = true"  />
+                        </ng-template>
+                    </td>
+                    <td>
+                        <ng-container *ngIf="client && client.promesseClient && client.promesseClient.depot !== null; else inputField18">
+                            {{ client?.promesseClient?.depot }}DT
+                        </ng-container>
+                        <ng-template #inputField18>
+                            <input [(ngModel)]="n18" (blur)="editinput = false" (dblclick)="editinput = true" />
+                        </ng-template>
+                    </td>
+                </tr>
 
-
-      </tr>
-      <tr>
-        <th scope="row">Chiffre d'affaire</th>
-        <td>{{client?.premiereVisite.chiffreAffaire}}</td>
-        <td>{{client?.deuxiemeVisite.chiffreAffaire}}</td>
-        <td>{{client?.promesseClient.chiffreAffaire}}</td>
-      </tr>
-      <tr>
-        <th scope="row">Impayés</th>
-        <td>{{client?.premiereVisite.impayes}}</td>
-        <td>{{client?.deuxiemeVisite.impayes}}</td>
-        <td>{{client?.promesseClient.impayes}}</td>
-      </tr>
-      <tr class="bg-warning">
-        <th scope="row" >Engagements</th>
-        <td>{{client?.premiereVisite.engagements}}</td>
-        <td>{{client?.deuxiemeVisite.engagements}}</td>
-        <td>{{client?.promesseClient.engagements}}</td>
-      </tr>
-      <tr>
-        <th scope="row">Debit</th>
-        <td>{{client?.premiereVisite.debit}}</td>
-        <td>{{client?.deuxiemeVisite.debit}}</td>
-        <td>{{client?.promesseClient.debit}}</td>
-      </tr>
-      <tr>
-        <th scope="row">Depot</th>
-        <td>{{client?.premiereVisite.depot}}</td>
-        <td>{{client?.deuxiemeVisite.depot}}</td>
-        <td>{{client?.promesseClient.depot}}</td>
-      </tr>
-    </tbody>
-  </table>
-  </div>
+                <tr>
+                    <th scope="row"></th>
+                    <td><button type="button" class="btn btn-primary" (click)="executeAttdprv()" >Save Situation</button></td>
+                    <td><button type="button" class="btn btn-primary" (click)="executeAttprc()" >Save Promesse</button></td>
+                    <td><button type="button" class="btn btn-primary" (click)="executeAttdxv()">Save KPI</button></td>
+                </tr>
+                </tbody>
+                    </table>
+                </div>
+                <button type="button" class="btn btn-primary" (click)="generateExcelFile(client)">Download Excel</button>
+            </div>
+        </div>
     </div>
-  </div>
-  </div>
+</div>
+

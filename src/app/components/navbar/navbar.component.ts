@@ -50,6 +50,6 @@ export class NavbarComponent implements OnInit {
 
   handleSearch() {
     const id = this.searchForm.get('value').value;
-    this.clientDataService.updateClientId(id);  // Update the client ID in the shared service
+    this.clientDataService.updateClientId(id);
   }
 }
