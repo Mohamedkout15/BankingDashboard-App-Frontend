@@ -1,7 +1,7 @@
 
 
 export interface Adresse {
-    codepostal: number;
+    codepostal: string;
     ville: string;
     gouvernerat: string;
     adresse: string;

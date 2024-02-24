@@ -6,24 +6,24 @@
                 <p class="card-text">
                     <strong>Date 1ère visite:</strong>
                     <span *ngIf="!editDate1; else dateSelector1" (dblclick)="editDate1 = true" tabindex="0" (blur)="editDate1 = false">
-            {{ client?.premiereVisite.datePrVisite | date: 'dd/MM/yyyy' || 'No date set' }}
-          </span>
+                        {{ client?.premiereVisite?.datePrVisite ? (client?.premiereVisite?.datePrVisite | date: 'dd/MM/yyyy') : 'No date set' }}
+                    </span>
                     <ng-template #dateSelector1>
-                        <input *ngIf="editDate1 || client?.premiereVisite.datePrVisite === null; else displayDate1" type="date" [(ngModel)]="selectedDate1" (keyup.enter)="setDatePrvisite(clientId, selectedDate1)" (blur)="editDate1 = false" />
+                        <input *ngIf="editDate1 || !client?.premiereVisite?.datePrVisite; else displayDate1" type="date" [(ngModel)]="selectedDate1" (keyup.enter)="setDatePrvisite(clientId, selectedDate1)" (blur)="editDate1 = false" />
                         <ng-template #displayDate1>
-                            <span>{{ client?.premiereVisite.datePrVisite | date: 'dd/MM/yyyy' }}</span>
+                            <span>{{ client?.premiereVisite?.datePrVisite | date: 'dd/MM/yyyy' }}</span>
                         </ng-template>
                     </ng-template>
                 </p>
                 <p class="card-text">
                     <strong>Date 2ème visite:</strong>
                     <span *ngIf="!editDate2; else dateSelector2" (dblclick)="editDate2 = true" tabindex="0" (blur)="editDate2 = false">
-            {{ client?.deuxiemeVisite.dateDxVisite | date: 'dd/MM/yyyy' || 'No date set' }}
-          </span>
+                        {{ client?.deuxiemeVisite?.dateDxVisite ? (client?.deuxiemeVisite?.dateDxVisite | date: 'dd/MM/yyyy') : 'No date set' }}
+                    </span>
                     <ng-template #dateSelector2>
-                        <input *ngIf="editDate2 || client?.deuxiemeVisite.dateDxVisite === null; else displayDate2" type="date" [(ngModel)]="selectedDate2" (keyup.enter)="setDatedxvisite(clientId, selectedDate2)" (blur)="editDate2 = false" />
+                        <input *ngIf="editDate2 || !client?.deuxiemeVisite?.dateDxVisite; else displayDate2" type="date" [(ngModel)]="selectedDate2" (keyup.enter)="setDatedxvisite(clientId, selectedDate2)" (blur)="editDate2 = false" />
                         <ng-template #displayDate2>
-                            <span>{{ client?.deuxiemeVisite.dateDxVisite | date: 'dd/MM/yyyy' }}</span>
+                            <span>{{ client?.deuxiemeVisite?.dateDxVisite | date: 'dd/MM/yyyy' }}</span>
                         </ng-template>
                     </ng-template>
                 </p>
@@ -31,7 +31,9 @@
         </div>
     </div>
 
-    <div class="container-fluid mb-4" *ngIf="client != null">
+
+
+<div class="container-fluid mb-4" *ngIf="client != null">
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Information Client :</h5>

@@ -1,69 +1,130 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ClientService} from '../../services/Client.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ClientService } from '../../services/Client.service';
+import { Client } from '../../Models/Client.model';
 
 @Component({
-  selector: 'app-icons',
-  templateUrl: './icons.component.html',
-  styleUrls: ['./icons.component.scss']
+    selector: 'app-icons',
+    templateUrl: './icons.component.html',
+    styleUrls: ['./icons.component.scss']
 })
 export class IconsComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private clientService: ClientService) {
-    this.clientForm = this.fb.group({
-      idClient: ['', Validators.required],
-      nomEntreprise: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      domaine: ['', Validators.required],
-      matriculeFiscale: ['', Validators.required],
-      numtel: ['', Validators.required],
-      codepostal: ['', Validators.required],
-      adresse: ['', Validators.required],
-      ville: ['', Validators.required],
-      gouvernerat: ['', Validators.required],
-      pays: ['', Validators.required],
-        selectedGovernorate: [''],
-        selectedCity: ['']
-    });
-  }
+    constructor(private fb: FormBuilder, private clientService: ClientService) { }
+    selectedCityPostalCodes: string[] = [];
+    clientForm: FormGroup;
 
+    ngOnInit() {
+        this.initForm();
+    }
 
-  clientForm: FormGroup;
+    initForm() {
+        this.clientForm = this.fb.group({
+            idClient: ['', Validators.required],
+            nomEntreprise: ['', Validators.required],
+            email: ['', [Validators.required, Validators.email]],
+            domaine: ['', Validators.required],
+            matriculeFiscale: ['', Validators.required],
+            numtel: ['', Validators.required],
+            codepostal: ['', Validators.required],
+            adresse: ['', Validators.required],
+            ville: ['', Validators.required],
+            Governorate: ['', Validators.required],
+            pays: ['Tunisia']
+        });
+    }
+
     get selectedGovernorateCities(): string[] {
-        return this.villes[this.clientForm.get('selectedGovernorate').value] || [];
+        return this.villes[this.clientForm.get('Governorate').value] || [];
     }
 
-    onGovernorateChange(selectedGovernorate: string): void {
-        this.clientForm.patchValue({ selectedCity: '' });
+    onCityChange() {
+        const SCity = this.clientForm.get('ville').value;
+        this.clientForm.get('codepostal').setValue(this.postalCodesOfTunisia[SCity]);
     }
 
- governorates: string[] = [
-    'Ariana',
-    'Beja',
-    'Ben Arous',
-    'Bizerte',
-    'Gabes',
-    'Gafsa',
-    'Jendouba',
-    'Kairouan',
-    'Kasserine',
-    'Kebili',
-    'Kef',
-    'Mahdia',
-    'Manouba',
-    'Medenine',
-    'Monastir',
-    'Nabeul',
-    'Sfax',
-    'Sidi Bouzid',
-    'Siliana',
-    'Sousse',
-    'Tataouine',
-    'Tozeur',
-    'Tunis',
-    'Zaghouan'
-  ];
- villes: { [key: string]: string[] } = {
+    get PostalCodeValue(): string {
+        const SCity = this.clientForm.get('ville').value;
+        return this.postalCodesOfTunisia[SCity];
+    }
+
+    onGovernorateChange(SGovernorate: string): void {
+        this.clientForm.patchValue({ SCity: '' });
+        this.selectedCityPostalCodes = []; // Reset postal codes
+    }
+
+    onSubmit() {
+        console.log('Form valid:', this.clientForm.valid);
+
+        if (this.clientForm.valid) {
+            const newClient: Client = {
+                id: 0,
+                idClient: this.clientForm.get('idClient').value,
+                nomEntreprise: this.clientForm.get('nomEntreprise').value,
+                email: this.clientForm.get('email').value,
+                domaine: this.clientForm.get('domaine').value,
+                matriculeFiscale: this.clientForm.get('matriculeFiscale').value,
+                numtel: this.clientForm.get('numtel').value,
+                adresse: {
+                    adresse: this.clientForm.get('adresse').value,
+                    ville: this.clientForm.get('ville').value,
+                    gouvernerat: this.clientForm.get('Governorate').value,
+                    codepostal: this.clientForm.get('codepostal').value,
+                    pays: this.clientForm.get('pays').value
+                },
+                premiereVisite: null,
+                deuxiemeVisite: null,
+                promesseClient: null
+            };
+
+            console.log(newClient);
+
+            this.clientService.addClient(newClient).subscribe(
+                (response) => {
+                    console.log('Client added successfully', response);
+                    this.clientForm.reset();
+                },
+                (error) => {
+                    console.error('Error adding client', error);
+                }
+            );
+        } else {
+            console.error('Form is invalid');
+        }
+    }
+
+
+
+
+
+
+    governorates: string[] = [
+        'Ariana',
+        'Beja',
+        'Ben Arous',
+        'Bizerte',
+        'Gabes',
+        'Gafsa',
+        'Jendouba',
+        'Kairouan',
+        'Kasserine',
+        'Kebili',
+        'Kef',
+        'Mahdia',
+        'Manouba',
+        'Medenine',
+        'Monastir',
+        'Nabeul',
+        'Sfax',
+        'Sidi Bouzid',
+        'Siliana',
+        'Sousse',
+        'Tataouine',
+        'Tozeur',
+        'Tunis',
+        'Zaghouan'
+    ];
+    villes: { [key: string]: string[] } = {
         'Ariana': ['Ariana', 'Kalâat el-Andalous', 'La Soukra', 'Mnihla'],
         'Beja': ['Béja', 'Testour', 'Nefza', 'Medjez el-Bab'],
         'Ben Arous': ['Ben Arous', 'El Mourouj', 'Hammam Lif', 'Radès'],
@@ -91,46 +152,46 @@ export class IconsComponent implements OnInit {
     };
     postalCodesOfTunisia: { [key: string]: string } = {
         'Ariana': '2080',
-        'Kalaat el-Andalous': '2083',
+        'Kalâat el-Andalous': '2083',
         'La Soukra': '2051',
         'Mnihla': '2082',
-        'Beja': '9000',
+        'Béja': '9000',
         'Testour': '9070',
         'Nefza': '9060',
         'Medjez el-Bab': '9070',
         'Ben Arous': '2013',
         'El Mourouj': '2074',
         'Hammam Lif': '2050',
-        'Rades': '2040',
+        'Radès': '2040',
         'Bizerte': '7000',
         'Menzel Bourguiba': '7050',
         'Mateur': '7030',
         'Ghar El Melh': '7011',
-        'Gabes': '6000',
+        'Gabès': '6000',
         'El Hamma': '6029',
         'Mareth': '6010',
         'Metouia': '6070',
         'Gafsa': '2100',
-        'Metlaoui': '2120',
+        'Métlaoui': '2120',
         'El Ksar': '2121',
         'Redeyef': '2122',
         'Jendouba': '8100',
         'Tabarka': '8110',
-        'Ain Draham': '8140',
+        'Aïn Draham': '8140',
         'Fernana': '8160',
         'Kairouan': '3100',
         'Sbikha': '3151',
         'Hajeb El Ayoun': '3160',
         'Kasserine': '1200',
         'Sbeitla': '1211',
-        'Feriana': '1280',
+        'Fériana': '1280',
         'Foussana': '1281',
-        'Kebili': '4200',
+        'Kébili': '4200',
         'Douz': '4260',
         'Souk Lahad': '4211',
         'Le Kef': '7100',
         'Dahmani': '7170',
-        'Jerissa': '7180',
+        'Jérissa': '7180',
         'Sakiet Sidi Youssef': '7111',
         'Mahdia': '5100',
         'Bou Merdes': '5111',
@@ -140,7 +201,7 @@ export class IconsComponent implements OnInit {
         'Douar Hicher': '2055',
         'Oued Ellil': '2054',
         'Tebourba': '2056',
-        'Medenine': '4100',
+        'Médenine': '4100',
         'Ben Gardane': '4110',
         'Djerba': '4180',
         'Zarzis': '4170',
@@ -184,23 +245,6 @@ export class IconsComponent implements OnInit {
         'Nadhour': '1160',
         'El Fahs': '1150'
     };
-
-
-    onSubmit() {
-    if (this.clientForm.valid) {
-      const newClient = this.clientForm.value;
-      this.clientService.addClient(newClient).subscribe(
-          (response) => {
-            console.log('Client added successfully', response);
-            // Reset the form after successful submission
-            this.clientForm.reset();
-          },
-          (error) => {
-            console.error('Error adding client', error);
-          }
-      );
     }
-  }
-  ngOnInit() {
-  }
-}
+
+

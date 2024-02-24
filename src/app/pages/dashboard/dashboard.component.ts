@@ -21,24 +21,24 @@ export class DashboardComponent implements OnInit, OnDestroy {
     editDate1 = false; // Add this property
     editDate2 = false;
     editinput = false;
-    n1 = 0;
-    n2 = 0;
-    n3 = 0;
-    n4 = 0;
-    n5 = 0;
-    n6 = 0;
-    n7 = 0;
-    n8 = 0;
-    n9 = 0;
-    n10 = 0;
-    n11 = 0;
-    n12 = 0;
-    n13 = 0;
-    n14 = 0;
-    n15 = 0;
-    n16 = 0;
-    n17 = 0;
-    n18 = 0;
+    n1 = null;
+    n2 = null;
+    n3 = null;
+    n4 = null;
+    n5 = null;
+    n6 = null;
+    n7 = null;
+    n8 = null;
+    n9 = null;
+    n10 = null;
+    n11 = null;
+    n12 = null;
+    n13 = null;
+    n14 = null;
+    n15 = null;
+    n16 = null;
+    n17 = null;
+    n18 = null;
 
 
     constructor(

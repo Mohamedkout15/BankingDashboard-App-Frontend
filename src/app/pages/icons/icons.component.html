@@ -1,107 +1,107 @@
 <div class="header pb-8 pt-5 pt-md-8" style="background-image: linear-gradient(to bottom, #E5E5EA, #F7F7F9);">
 
-<!-- Page content -->
-<div class="container-fluid ">
-    <div class="card">
-    <div class="card-body">
-        <form [formGroup]="clientForm" (ngSubmit)="onSubmit()">
-            <!-- User information -->
-            <h6 class="heading-small text-muted mb-4">User information</h6>
-            <div class="pl-lg-4">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label class="form-control-label" for="idClient">ID Client</label>
-                            <input type="text" id="idClient" formControlName="idClient" class="form-control form-control-alternative" placeholder="ID Client">
+    <!-- Page content -->
+    <div class="container-fluid ">
+        <div class="card">
+            <div class="card-body">
+                <form [formGroup]="clientForm" (ngSubmit)="onSubmit()">
+                    <!-- User information -->
+                    <h6 class="heading-small text-muted mb-4">User information</h6>
+                    <div class="pl-lg-4">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="idClient">ID Client</label>
+                                    <input type="text" id="idClient" formControlName="idClient" class="form-control form-control-alternative" placeholder="ID Client">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="email">Email address</label>
+                                    <input type="email" id="email" formControlName="email" class="form-control form-control-alternative" placeholder="Email address">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="nomEntreprise">Nom Entreprise</label>
+                                    <input type="text" id="nomEntreprise" formControlName="nomEntreprise" class="form-control form-control-alternative" placeholder="Nom Entreprise">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="domaine">Domaine</label>
+                                    <input type="text" id="domaine" formControlName="domaine" class="form-control form-control-alternative" placeholder="Domaine">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="matriculeFiscale">Matricule Fiscale</label>
+                                    <input type="text" id="matriculeFiscale" formControlName="matriculeFiscale" class="form-control form-control-alternative" placeholder="Matricule Fiscale">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="numtel">Numero Telephone</label>
+                                    <input type="text" id="numtel" formControlName="numtel" class="form-control form-control-alternative" placeholder="Numero Telephone">
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label class="form-control-label" for="email">Email address</label>
-                            <input type="email" id="email" formControlName="email" class="form-control form-control-alternative" placeholder="Email address">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label class="form-control-label" for="nomEntreprise">Nom Entreprise</label>
-                            <input type="text" id="nomEntreprise" formControlName="nomEntreprise" class="form-control form-control-alternative" placeholder="Nom Entreprise">
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label class="form-control-label" for="domaine">Domaine</label>
-                            <input type="text" id="domaine" formControlName="domaine" class="form-control form-control-alternative" placeholder="Domaine">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label class="form-control-label" for="domaine">Matricule Fiscale</label>
-                        <input type="text" id="matriculeFiscale" formControlName="domaine" class="form-control form-control-alternative" placeholder="Domaine">
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label class="form-control-label" for="domaine">Numero Telephone</label>
-                        <input type="text" id="numtel" formControlName="domaine" class="form-control form-control-alternative" placeholder="Domaine">
-                    </div>
-                </div>
-                </div>
-            </div>
-            <hr class="my-4" />
+                    <hr class="my-4" />
 
-            <!-- Contact information -->
-            <h6 class="heading-small text-muted mb-4">Contact information</h6>
-            <div class="pl-lg-4">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label class="form-control-label" for="adresse">Address</label>
-                            <input id="adresse" formControlName="adresse" class="form-control form-control-alternative" placeholder="Address" type="text">
+                    <!-- Contact information -->
+                    <h6 class="heading-small text-muted mb-4">Contact information</h6>
+                    <div class="pl-lg-4">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="adresse">Address</label>
+                                    <input id="adresse" formControlName="adresse" class="form-control form-control-alternative" placeholder="Address" type="text">
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
+
+
+                    <div class="row">
                     <div class="col-lg-4">
-                        <div class="form-group">
-                            <label class="form-control-label" for="Gouvernorat">Gouvernorat</label>
-                            <select id="Gouvernorat" formControlName="selectedGovernorate" class="form-control form-control-alternative" (change)="onGovernorateChange($event.target.value)">
-                                <option *ngFor="let governorate of governorates" [value]="governorate">{{ governorate }}</option>
-                            </select>
-                        </div>
+                                <div class="form-group">
+                                    <label class="form-control-label" for="Gouvernorat">Gouvernorat</label>
+                                    <select id="Gouvernorat" formControlName="Governorate" class="form-control form-control-alternative" (change)="onGovernorateChange($event.target.value)">
+                                        <option *ngFor="let governorat of governorates" [value]="governorat">{{ governorat }}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="Ville">Ville</label>
+                                    <select id="Ville" formControlName="ville" class="form-control form-control-alternative" (change)="onCityChange()">
+                                        <option *ngFor="let ville of selectedGovernorateCities" [value]="ville">{{ ville }}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="codePostal">Postal code</label>
+                                    <select id="codePostal" formControlName="codepostal" class="form-control form-control-alternative">
+                                        <option [ngValue]="PostalCodeValue">{{ PostalCodeValue }}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- Country -->
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="pays">Country</label>
+                                    <input type="text" id="pays" formControlName="pays" class="form-control form-control-alternative" placeholder="Country" value="Tunisia" disabled>
+                                </div>
+                            </div>
                     </div>
-                    <div class="col-lg-4">
-                        <div class="form-group">
-                            <label class="form-control-label" for="Ville">Ville</label>
-                            <select id="Ville" formControlName="selectedCity" class="form-control form-control-alternative">
-                                <option *ngFor="let city of selectedGovernorateCities" [value]="city">{{ city }}</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="form-group">
-                            <label class="form-control-label" for="codePostal">Postal code</label>
-                            <select id="codePostal" formControlName="selectedCity" class="form-control form-control-alternative">
-                                <option *ngFor="let city of governorates" [value]="postalCodesOfTunisia[city]">{{ postalCodesOfTunisia[city] }}</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="form-group">
-                            <label class="form-control-label" for="pays">Country</label>
-                            <input type="text" id="pays" formControlName="pays" class="form-control form-control-alternative" placeholder="Country">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <button type="submit" [disabled]="!clientForm.valid" class="btn btn-primary">Add Client</button>
-        </form>
-
-
-
-
+                    <button  type="submit" class="btn btn-primary">Add Client</button>
+                </form>
+</div>
+        </div>
 

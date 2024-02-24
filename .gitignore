@@ -1,0 +1,39 @@
+# Directory for built output
+dist/
+tmp/
+
+# Compiled JavaScript and source maps
+app/**/*.js
+app/**/*.js.map
+
+# Dependency directories
+node_modules/
+bower_components/
+
+# IDE directories
+.idea/
+
+# Sass cache
+.sass-cache/
+
+# Other cache and logs
+connect.lock/
+coverage/
+libpeerconnection.log/
+npm-debug.log
+testem.log
+typings/
+
+# Angular CLI specific
+.angular/
+
+# End-to-end test files
+e2e/*.js
+e2e/*.map
+
+# Dependency lock files
+package-lock.json
+
+# macOS system files
+.DS_Store/
+
