@@ -50,5 +50,9 @@ export class ClientService {
     const url = `${this.baseUrl}/setvalprc/${id}`;
     return this.http.post<void>(url, nValues);
   }
+  checkClientId(clientId: string) {
+    const url = `${this.baseUrl}/client/checkid/${clientId}`;
+    return this.http.get<boolean>(url);
+  }
 }
 

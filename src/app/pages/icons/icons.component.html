@@ -12,13 +12,25 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="idClient">ID Client</label>
-                                    <input type="text" id="idClient" formControlName="idClient" class="form-control form-control-alternative" placeholder="ID Client">
+                                    <input type="text" id="idClient" formControlName="idClient"
+                                           class="form-control form-control-alternative" placeholder="ID Client">
+                                    <div *ngIf="clientForm.get('idClient').invalid && (clientForm.get('idClient').dirty || clientForm.get('idClient').touched)"
+                                         class="invalid-feedback">
+                                        <mat-error *ngIf="clientForm.get('idClient').invalid && (clientForm.get('idClient').dirty || clientForm.get('idClient').touched)">
+                                            <span *ngIf="clientForm.get('idClient').errors.required">ID Client is required</span>
+                                            <span *ngIf="clientForm.get('idClient').errors.pattern">ID Client should follow the pattern</span>
+                                        </mat-error>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="email">Email address</label>
                                     <input type="email" id="email" formControlName="email" class="form-control form-control-alternative" placeholder="Email address">
+                                    <mat-error *ngIf="clientForm.get('email').invalid && (clientForm.get('email').dirty || clientForm.get('email').touched)">
+                                        <span *ngIf="clientForm.get('email').errors.required">Email is required</span>
+                                        <span *ngIf="clientForm.get('email').errors.email">Please enter a valid email address</span>
+                                    </mat-error>
                                 </div>
                             </div>
                         </div>
@@ -27,12 +39,18 @@
                                 <div class="form-group">
                                     <label class="form-control-label" for="nomEntreprise">Nom Entreprise</label>
                                     <input type="text" id="nomEntreprise" formControlName="nomEntreprise" class="form-control form-control-alternative" placeholder="Nom Entreprise">
+                                    <mat-error *ngIf="clientForm.get('nomEntreprise').invalid && (clientForm.get('nomEntreprise').dirty || clientForm.get('nomEntreprise').touched)">
+                                        <span *ngIf="clientForm.get('nomEntreprise').errors.required">Veuillez saisir le nom de l'entreprise </span>
+                                    </mat-error>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="domaine">Domaine</label>
                                     <input type="text" id="domaine" formControlName="domaine" class="form-control form-control-alternative" placeholder="Domaine">
+                                    <mat-error *ngIf="clientForm.get('domaine').invalid && (clientForm.get('domaine').dirty || clientForm.get('domaine').touched)">
+                                        <span *ngIf="clientForm.get('domaine').errors.required">Veuillez saisir le secteur d'activité du client</span>
+                                    </mat-error>
                                 </div>
                             </div>
                         </div>
@@ -41,12 +59,20 @@
                                 <div class="form-group">
                                     <label class="form-control-label" for="matriculeFiscale">Matricule Fiscale</label>
                                     <input type="text" id="matriculeFiscale" formControlName="matriculeFiscale" class="form-control form-control-alternative" placeholder="Matricule Fiscale">
+                                    <mat-error *ngIf="clientForm.get('matriculeFiscale').invalid && (clientForm.get('matriculeFiscale').dirty || clientForm.get('matriculeFiscale').touched)">
+                                        <span *ngIf="clientForm.get('matriculeFiscale').errors.required">Veuillez saisir la Matricule Fiscale du client</span>
+                                        <span *ngIf="clientForm.get('matriculeFiscale').errors.pattern">Matricule Fiscale invalide</span>
+                                    </mat-error>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="numtel">Numero Telephone</label>
                                     <input type="text" id="numtel" formControlName="numtel" class="form-control form-control-alternative" placeholder="Numero Telephone">
+                                    <mat-error *ngIf="clientForm.get('numtel').invalid && (clientForm.get('numtel').dirty || clientForm.get('numtel').touched)">
+                                        <span *ngIf="clientForm.get('numtel').errors.required">Veuillez saisir le numero de telephone du client</span>
+                                        <span *ngIf="clientForm.get('numtel').errors.pattern">Numero telephone invalide</span>
+                                    </mat-error>
                                 </div>
                             </div>
                         </div>
@@ -61,6 +87,9 @@
                                 <div class="form-group">
                                     <label class="form-control-label" for="adresse">Address</label>
                                     <input id="adresse" formControlName="adresse" class="form-control form-control-alternative" placeholder="Address" type="text">
+                                    <mat-error id="error" *ngIf="clientForm.get('adresse').invalid && (clientForm.get('adresse').dirty || clientForm.get('adresse').touched)">
+                                        Address is required
+                                    </mat-error>
                                 </div>
                             </div>
                         </div>
@@ -74,14 +103,20 @@
                                     <select id="Gouvernorat" formControlName="Governorate" class="form-control form-control-alternative" (change)="onGovernorateChange($event.target.value)">
                                         <option *ngFor="let governorat of governorates" [value]="governorat">{{ governorat }}</option>
                                     </select>
+                                    <mat-error *ngIf="clientForm.get('Governorate').invalid && (clientForm.get('Governorate').dirty || clientForm.get('Governorate').touched)">
+                                        Gouvernorat is required
+                                    </mat-error>
                                 </div>
                             </div>
                             <div class="col-lg-4">
                                 <div class="form-group">
                                     <label class="form-control-label" for="Ville">Ville</label>
-                                    <select id="Ville" formControlName="ville" class="form-control form-control-alternative" (change)="onCityChange()">
+                                    <select id="Ville" formControlName="ville" class="form-control form-control-alternative"  (change)="onCityChange()">
                                         <option *ngFor="let ville of selectedGovernorateCities" [value]="ville">{{ ville }}</option>
                                     </select>
+                                    <mat-error *ngIf="clientForm.get('ville').invalid && (clientForm.get('ville').dirty || clientForm.get('ville').touched)">
+                                        Ville is required
+                                    </mat-error>
                                 </div>
                             </div>
                             <div class="col-lg-4">
@@ -90,6 +125,9 @@
                                     <select id="codePostal" formControlName="codepostal" class="form-control form-control-alternative">
                                         <option [ngValue]="PostalCodeValue">{{ PostalCodeValue }}</option>
                                     </select>
+                                    <mat-error *ngIf="clientForm.get('codepostal').invalid && (clientForm.get('codepostal').dirty || clientForm.get('codepostal').touched)">
+                                        Postal code is required
+                                    </mat-error>
                                 </div>
                             </div>
                             <!-- Country -->

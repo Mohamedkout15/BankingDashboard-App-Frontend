@@ -6,7 +6,7 @@ import { Client } from '../../Models/Client.model';
 @Component({
     selector: 'app-icons',
     templateUrl: './icons.component.html',
-    styleUrls: ['./icons.component.scss']
+    styleUrls: ['./icons.component.css']
 })
 export class IconsComponent implements OnInit {
 
@@ -20,12 +20,12 @@ export class IconsComponent implements OnInit {
 
     initForm() {
         this.clientForm = this.fb.group({
-            idClient: ['', Validators.required],
+            idClient: ['', [Validators.required, Validators.pattern(/^\d{3}[A-Z]{3}\d{4}$/)]],
             nomEntreprise: ['', Validators.required],
             email: ['', [Validators.required, Validators.email]],
             domaine: ['', Validators.required],
-            matriculeFiscale: ['', Validators.required],
-            numtel: ['', Validators.required],
+            matriculeFiscale: ['', [Validators.required, Validators.pattern(/^\d{3}[A-Z]{2}\d{4}$/)]],
+            numtel: ['', [Validators.required, Validators.pattern(/^\d{8}$/)]],
             codepostal: ['', Validators.required],
             adresse: ['', Validators.required],
             ville: ['', Validators.required],
@@ -77,7 +77,6 @@ export class IconsComponent implements OnInit {
                 promesseClient: null
             };
 
-            console.log(newClient);
 
             this.clientService.addClient(newClient).subscribe(
                 (response) => {
