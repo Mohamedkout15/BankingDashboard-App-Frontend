@@ -6,30 +6,26 @@
             <div class="card-body">
                 <form [formGroup]="clientForm" (ngSubmit)="onSubmit()">
                     <!-- User information -->
-                    <h6 class="heading-small text-muted mb-4">User information</h6>
+                    <h6 class="heading-small text-muted mb-4">informations du client</h6>
                     <div class="pl-lg-4">
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="idClient">ID Client</label>
-                                    <input type="text" id="idClient" formControlName="idClient"
-                                           class="form-control form-control-alternative" placeholder="ID Client">
-                                    <div *ngIf="clientForm.get('idClient').invalid && (clientForm.get('idClient').dirty || clientForm.get('idClient').touched)"
-                                         class="invalid-feedback">
+                                    <input type="text" id="idClient" formControlName="idClient" class="form-control form-control-alternative" placeholder="ID Client">
                                         <mat-error *ngIf="clientForm.get('idClient').invalid && (clientForm.get('idClient').dirty || clientForm.get('idClient').touched)">
-                                            <span *ngIf="clientForm.get('idClient').errors.required">ID Client is required</span>
-                                            <span *ngIf="clientForm.get('idClient').errors.pattern">ID Client should follow the pattern</span>
+                                            <span *ngIf="clientForm.get('idClient').errors.required">Veuillez saisir l'identifiant du client</span>
+                                            <span *ngIf="clientForm.get('idClient').errors.pattern">Veuillez saisir un identifiant valide</span>
                                         </mat-error>
                                     </div>
                                 </div>
-                            </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="email">Email address</label>
                                     <input type="email" id="email" formControlName="email" class="form-control form-control-alternative" placeholder="Email address">
                                     <mat-error *ngIf="clientForm.get('email').invalid && (clientForm.get('email').dirty || clientForm.get('email').touched)">
-                                        <span *ngIf="clientForm.get('email').errors.required">Email is required</span>
-                                        <span *ngIf="clientForm.get('email').errors.email">Please enter a valid email address</span>
+                                        <span *ngIf="clientForm.get('email').errors.required">Veuillez saisir l'email du client</span>
+                                        <span *ngIf="clientForm.get('email').errors.email">veuillez saisir un email valide</span>
                                     </mat-error>
                                 </div>
                             </div>
@@ -80,15 +76,15 @@
                     <hr class="my-4" />
 
                     <!-- Contact information -->
-                    <h6 class="heading-small text-muted mb-4">Contact information</h6>
+                    <h6 class="heading-small text-muted mb-4">Adresse du client</h6>
                     <div class="pl-lg-4">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label class="form-control-label" for="adresse">Address</label>
+                                    <label class="form-control-label" for="adresse">Addresse</label>
                                     <input id="adresse" formControlName="adresse" class="form-control form-control-alternative" placeholder="Address" type="text">
                                     <mat-error id="error" *ngIf="clientForm.get('adresse').invalid && (clientForm.get('adresse').dirty || clientForm.get('adresse').touched)">
-                                        Address is required
+                                        Veuillez saisir l'Addresse du client
                                     </mat-error>
                                 </div>
                             </div>
@@ -104,7 +100,7 @@
                                         <option *ngFor="let governorat of governorates" [value]="governorat">{{ governorat }}</option>
                                     </select>
                                     <mat-error *ngIf="clientForm.get('Governorate').invalid && (clientForm.get('Governorate').dirty || clientForm.get('Governorate').touched)">
-                                        Gouvernorat is required
+                                        Veuillez choisir la Gouvernorat
                                     </mat-error>
                                 </div>
                             </div>
@@ -115,7 +111,7 @@
                                         <option *ngFor="let ville of selectedGovernorateCities" [value]="ville">{{ ville }}</option>
                                     </select>
                                     <mat-error *ngIf="clientForm.get('ville').invalid && (clientForm.get('ville').dirty || clientForm.get('ville').touched)">
-                                        Ville is required
+                                        Veuillez choisir la Ville
                                     </mat-error>
                                 </div>
                             </div>
@@ -126,7 +122,7 @@
                                         <option [ngValue]="PostalCodeValue">{{ PostalCodeValue }}</option>
                                     </select>
                                     <mat-error *ngIf="clientForm.get('codepostal').invalid && (clientForm.get('codepostal').dirty || clientForm.get('codepostal').touched)">
-                                        Postal code is required
+                                        Veuillez choisir le Postal code
                                     </mat-error>
                                 </div>
                             </div>
@@ -140,6 +136,7 @@
                     </div>
                     <button  type="submit" class="btn btn-primary">Add Client</button>
                 </form>
-</div>
+            </div>
         </div>
-
+    </div>
+</div>
