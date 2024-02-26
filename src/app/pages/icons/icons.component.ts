@@ -1,16 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms'; // Remove unnecessary imports
+import { MatDialog } from '@angular/material/dialog';
+import Swal from 'sweetalert2'; // Add import for SweetAlert2
 import { ClientService } from '../../services/Client.service';
 import { Client } from '../../Models/Client.model';
 
 @Component({
     selector: 'app-icons',
     templateUrl: './icons.component.html',
-    styleUrls: ['./icons.component.scss']
+    styleUrls: ['./icons.component.css']
 })
 export class IconsComponent implements OnInit {
 
-    constructor(private fb: FormBuilder, private clientService: ClientService) { }
+    constructor(private fb: FormBuilder, private clientService: ClientService, private dialog: MatDialog) { }
+
     selectedCityPostalCodes: string[] = [];
     clientForm: FormGroup;
 
@@ -18,14 +21,107 @@ export class IconsComponent implements OnInit {
         this.initForm();
     }
 
+    openConfirmationDialog(): void {
+        if (this.clientForm.valid) {
+            const formData = this.clientForm.value;
+            const message = ` <div class="message">
+                                        <p>ID Client: ${formData.idClient}</p>
+                                            <p>Nom Entreprise: ${formData.nomEntreprise}</p>
+                                            <p>Email: ${formData.email}</p>
+                                            <p>Domaine: ${formData.domaine}</p>
+                                            <p>Matricule Fiscale: ${formData.matriculeFiscale}</p>
+                                            <p>Numero Telephone: ${formData.numtel}</p>
+                                            <p>Adresse: ${formData.adresse}</p>
+                                            <p>Ville: ${formData.ville}</p>
+                                            <p>Gouvernorat: ${formData.Governorate}</p>
+                                            <p>Postal Code: ${formData.codepostal}</p>
+                                            <p>Pays: ${formData.pays}</p> </div>`;
+
+            Swal.fire({
+                title: 'Ajouter Client?',
+                html: `Vous êtes sûr d'ajouter ce client ?<br><br>${message}`, // Display client data in the message
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3eff00',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ajouter Client',
+                cancelButtonText: 'No, cancel!',
+                reverseButtons: true,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const clientId = this.clientForm.get('idClient').value;
+                    this.clientService.checkClientId(clientId).subscribe(
+                        (clientExists: boolean) => {
+                            if (!clientExists) {
+                                this.addClient(); // Add client if user confirms and client doesn't exist
+                            } else {
+                                console.error('Client already exists');
+                            }
+                        },
+                        (error) => {
+                            console.error('Error checking client ID', error);
+                        }
+                    );
+                } else if (
+                    /* Read more about handling dismissals below */
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    Swal.fire({
+                        title: "Annulé",
+                        text: "L'ajout du client est annulé",
+                        icon: "error",
+                        confirmButtonColor: '#d33',
+                    });
+                }
+
+            });
+        } else {
+            console.error('Form is invalid');
+        }
+    }
+
+
+
+
+    addClient() {
+        const newClient: Client = {
+            id: 0,
+            idClient: this.clientForm.get('idClient').value,
+            nomEntreprise: this.clientForm.get('nomEntreprise').value,
+            email: this.clientForm.get('email').value,
+            domaine: this.clientForm.get('domaine').value,
+            matriculeFiscale: this.clientForm.get('matriculeFiscale').value,
+            numtel: this.clientForm.get('numtel').value,
+            adresse: {
+                adresse: this.clientForm.get('adresse').value,
+                ville: this.clientForm.get('ville').value,
+                gouvernerat: this.clientForm.get('Governorate').value,
+                codepostal: this.clientForm.get('codepostal').value,
+                pays: this.clientForm.get('pays').value
+            },
+            premiereVisite: null,
+            deuxiemeVisite: null,
+            promesseClient: null
+        };
+        this.clientService.addClient(newClient).subscribe(
+            (response) => {
+                console.log('Client added successfully', response);
+                this.clientForm.reset();
+            },
+            (error) => {
+                console.error('Error adding client', error);
+            }
+        );
+    }
+
     initForm() {
         this.clientForm = this.fb.group({
-            idClient: ['', Validators.required],
+            idClient: ['', [Validators.required, Validators.pattern(/^\d{3}[A-Z]{3}\d{4}$/)]],
             nomEntreprise: ['', Validators.required],
             email: ['', [Validators.required, Validators.email]],
             domaine: ['', Validators.required],
-            matriculeFiscale: ['', Validators.required],
-            numtel: ['', Validators.required],
+            matriculeFiscale: ['', [Validators.required, Validators.pattern(/^\d{3}[A-Z]{2}\d{4}$/)]],
+            numtel: ['', [Validators.required, Validators.pattern(/^\d{8}$/)]],
             codepostal: ['', Validators.required],
             adresse: ['', Validators.required],
             ville: ['', Validators.required],
@@ -53,52 +149,9 @@ export class IconsComponent implements OnInit {
         this.selectedCityPostalCodes = []; // Reset postal codes
     }
 
-    onSubmit() {
-        console.log('Form valid:', this.clientForm.valid);
-
-        if (this.clientForm.valid) {
-            const newClient: Client = {
-                id: 0,
-                idClient: this.clientForm.get('idClient').value,
-                nomEntreprise: this.clientForm.get('nomEntreprise').value,
-                email: this.clientForm.get('email').value,
-                domaine: this.clientForm.get('domaine').value,
-                matriculeFiscale: this.clientForm.get('matriculeFiscale').value,
-                numtel: this.clientForm.get('numtel').value,
-                adresse: {
-                    adresse: this.clientForm.get('adresse').value,
-                    ville: this.clientForm.get('ville').value,
-                    gouvernerat: this.clientForm.get('Governorate').value,
-                    codepostal: this.clientForm.get('codepostal').value,
-                    pays: this.clientForm.get('pays').value
-                },
-                premiereVisite: null,
-                deuxiemeVisite: null,
-                promesseClient: null
-            };
-
-            console.log(newClient);
-
-            this.clientService.addClient(newClient).subscribe(
-                (response) => {
-                    console.log('Client added successfully', response);
-                    this.clientForm.reset();
-                },
-                (error) => {
-                    console.error('Error adding client', error);
-                }
-            );
-        } else {
-            console.error('Form is invalid');
-        }
-    }
 
 
-
-
-
-
-    governorates: string[] = [
+governorates: string[] = [
         'Ariana',
         'Beja',
         'Ben Arous',

@@ -12,6 +12,8 @@ import { MapsComponent } from '../../pages/maps/maps.component';
 import { UserProfileComponent } from '../../pages/user-profile/user-profile.component';
 import { TablesComponent } from '../../pages/tables/tables.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {MatInputModule} from '@angular/material/input';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 // import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -22,7 +24,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         HttpClientModule,
         NgbModule,
         ClipboardModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MatInputModule,
+        DragDropModule
     ],
   declarations: [
     DashboardComponent,

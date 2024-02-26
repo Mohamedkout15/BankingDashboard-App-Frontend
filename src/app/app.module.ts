@@ -14,6 +14,7 @@ import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 
 
+
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -22,7 +23,7 @@ import { ComponentsModule } from './components/components.module';
     NgbModule,
     RouterModule,
     AppRoutingModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule,
   ],
   declarations: [
     AppComponent,

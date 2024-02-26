@@ -3,12 +3,12 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Client } from '../Models/Client.model';
 
-
 @Injectable({
   providedIn: 'root',
 })
 export class ClientService {
   private baseUrl = 'http://localhost:8081/client';
+
 
   constructor(private http: HttpClient) {
   }
@@ -35,11 +35,11 @@ export class ClientService {
     const params = new HttpParams().set('date', date.toISOString().split('T')[0]);
     return this.http.post<Client>(url, null, {params});
   }
+
   setValprv(id: string, nValues: number[]): Observable<void> {
     const url = `${this.baseUrl}/setvalprv/${id}`;
     return this.http.post<void>(url, nValues);
   }
-
 
   setValdxv(id: string, nValues: Number[]): Observable<void> {
     const url = `${this.baseUrl}/setvaldxv/${id}`;
@@ -50,5 +50,9 @@ export class ClientService {
     const url = `${this.baseUrl}/setvalprc/${id}`;
     return this.http.post<void>(url, nValues);
   }
-}
 
+  checkClientId(clientId: string) {
+    const url = `${this.baseUrl}/checkid/${clientId}`;
+    return this.http.get<boolean>(url);
+  }
+}
