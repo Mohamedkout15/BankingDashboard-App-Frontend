@@ -101,11 +101,11 @@ Icon reset values - used to enable color customizations
 
 /* -------------------------------- 
 
-Stroke effects - Nucleo outline icons
+Stroke effects - Nucleo outline ajouterclient
 
-- 16px icons -> up to 1px stroke (16px outline icons do not support stroke changes)
-- 24px, 32px icons -> up to 2px stroke
-- 48px, 64px icons -> up to 4px stroke
+- 16px ajouterclient -> up to 1px stroke (16px outline ajouterclient do not support stroke changes)
+- 24px, 32px ajouterclient -> up to 2px stroke
+- 48px, 64px ajouterclient -> up to 4px stroke
 
 -------------------------------- */
 

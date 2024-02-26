@@ -6,13 +6,21 @@ import { Subscription } from 'rxjs';
 import { Client } from '../../Models/Client.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import * as XLSX from 'xlsx';
+import {DatePipe, NgClass} from '@angular/common';
+import {FormsModule} from '@angular/forms';
 
 @Component({
-    selector: 'app-dashboard',
-    templateUrl: './dashboard.component.html',
-    styleUrls: ['./dashboard.component.scss'],
+    selector: 'app-interfacevisite',
+    templateUrl: './InterfaceVisite.component.html',
+    styleUrls: ['./InterfaceVisite.component.css'],
+    imports: [
+        DatePipe,
+        FormsModule,
+        NgClass
+    ],
+    standalone: true
 })
-export class DashboardComponent implements OnInit, OnDestroy {
+export class InterfaceVisiteComponent implements OnInit, OnDestroy {
     client: Client;
     clientId: string;
     private routeSubscription: Subscription;
@@ -59,7 +67,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
     ngOnDestroy() {
         this.routeSubscription.unsubscribe();
-        this.initvalues();
     }
     initvalues() {
         if (this.client && this.client.premiereVisite && this.client.premiereVisite.placements !== null) {
