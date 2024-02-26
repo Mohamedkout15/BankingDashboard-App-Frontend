@@ -1,3 +1,14 @@
 mat-error{
   color: #ff0000;
 }
+.message {
+  margin: 0;
+  padding: 0;
+}
+
+.message p {
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+
+}

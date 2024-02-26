@@ -4,7 +4,7 @@
     <div class="container-fluid ">
         <div class="card">
             <div class="card-body">
-                <form [formGroup]="clientForm" (ngSubmit)="onSubmit()">
+                <form [formGroup]="clientForm" >
                     <!-- User information -->
                     <h6 class="heading-small text-muted mb-4">informations du client</h6>
                     <div class="pl-lg-4">
@@ -134,7 +134,7 @@
                                 </div>
                             </div>
                     </div>
-                    <button  type="submit" class="btn btn-primary">Add Client</button>
+                    <button  (click)="openConfirmationDialog()" class="btn btn-primary" [disabled]="!clientForm.valid">Add Client</button>
                 </form>
             </div>
         </div>
