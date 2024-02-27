@@ -13,7 +13,7 @@ import { TablesComponent } from '../../pages/tables/tables.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatInputModule} from '@angular/material/input';
 import {DragDropModule} from '@angular/cdk/drag-drop';
-// import { ToastrModule } from 'ngx-toastr';
+ import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
     imports: [
