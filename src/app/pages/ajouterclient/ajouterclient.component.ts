@@ -1,18 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms'; // Remove unnecessary imports
-import { MatDialog } from '@angular/material/dialog';
-import Swal from 'sweetalert2'; // Add import for SweetAlert2
+import Swal from 'sweetalert2';
 import { ClientService } from '../../services/Client.service';
 import { Client } from '../../Models/Client.model';
 
 @Component({
-    selector: 'app-icons',
-    templateUrl: './icons.component.html',
-    styleUrls: ['./icons.component.css']
+    selector: 'app-ajouterclient',
+    templateUrl: './ajouterclient.component.html',
+    styleUrls: ['./ajouterclient.component.css']
 })
-export class IconsComponent implements OnInit {
+export class AjouterClientComponent implements OnInit {
 
-    constructor(private fb: FormBuilder, private clientService: ClientService, private dialog: MatDialog) { }
+    constructor(private fb: FormBuilder, private clientService: ClientService,) { }
 
     selectedCityPostalCodes: string[] = [];
     clientForm: FormGroup;
