@@ -7,13 +7,13 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 
 const routes: Routes = [
   {
-    path: 'interfacevisite',
-    redirectTo: 'InterfaceVisite',
+    path: '',
+    redirectTo: 'interfacevisite',
     pathMatch: 'full',
   },
   {
     path: '',
-    component: AdminLayoutComponent,
+    component: AdminLayoutComponent, // Assuming AdminLayoutComponent is your dashboard component
     children: [
       {
         path: '',
@@ -23,7 +23,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'InterfaceVisite'
+    redirectTo: 'interfacevisite'
   }
 ];
 
@@ -31,9 +31,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     BrowserModule,
-    RouterModule.forRoot(routes, {
-      useHash: true
-    })
+    RouterModule.forRoot(routes) // Removed useHash: true
   ],
   exports: [
   ],
