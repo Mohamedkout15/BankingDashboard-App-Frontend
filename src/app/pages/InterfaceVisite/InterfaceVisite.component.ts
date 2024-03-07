@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs';
 import { Client } from '../../Models/Client.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import * as XLSX from 'xlsx';
-import {DatePipe, NgClass} from '@angular/common';
+import {DatePipe, NgClass, NgIf} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 
 @Component({
@@ -16,7 +16,8 @@ import {FormsModule} from '@angular/forms';
     imports: [
         DatePipe,
         FormsModule,
-        NgClass
+        NgClass,
+        NgIf
     ],
     standalone: true
 })

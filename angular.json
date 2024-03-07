@@ -23,7 +23,8 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
             "allowedCommonJsDependencies": [
-              "chart.js"
+              "chart.js",
+              "sweetalert2"
             ],
             "assets": [
               "src/favicon.ico",
@@ -31,7 +32,9 @@
             ],
             "styles": [
               "src/styles.scss",
-              "src/assets/scss/argon.scss"
+              "src/assets/scss/argon.scss",
+              "src/assets/vendor/nucleo/css/nucleo.css",
+              "src/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css"
             ],
             "scripts": [
               "node_modules/chart.js/dist/Chart.min.js",
