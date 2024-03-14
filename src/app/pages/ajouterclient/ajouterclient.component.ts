@@ -52,7 +52,7 @@ export class AjouterClientComponent implements OnInit {
                 html: `Vous êtes sûr d'ajouter ce client ?<br><br>${message}`, // Display client data in the message
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#3eff00',
+                confirmButtonColor: '#1b5f01',
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Ajouter Client',
                 cancelButtonText: 'No, cancel!',
