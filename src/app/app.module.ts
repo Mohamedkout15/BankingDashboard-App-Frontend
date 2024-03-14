@@ -8,6 +8,10 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
+import { BrowserModule } from '@angular/platform-browser';
+import { ToastrModule } from 'ngx-toastr';
+
+
 
 @NgModule({
   imports: [
@@ -18,7 +22,9 @@ import { ComponentsModule } from './components/components.module';
     RouterModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    BrowserModule,
+    ToastrModule.forRoot()
   ],
   declarations: [
     AppComponent,

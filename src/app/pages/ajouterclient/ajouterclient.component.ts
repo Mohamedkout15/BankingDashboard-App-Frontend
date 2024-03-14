@@ -3,6 +3,9 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms'; // Remove unn
 import Swal from 'sweetalert2';
 import { ClientService } from '../../services/Client.service';
 import { Client } from '../../Models/Client.model';
+import { ToastrService } from 'ngx-toastr';
+
+
 
 @Component({
     selector: 'app-ajouterclient',
@@ -11,7 +14,7 @@ import { Client } from '../../Models/Client.model';
 })
 export class AjouterClientComponent implements OnInit {
 
-    constructor(private fb: FormBuilder, private clientService: ClientService,) { }
+    constructor(private fb: FormBuilder, private clientService: ClientService, private toastr: ToastrService  ) { }
 
     selectedCityPostalCodes: string[] = [];
     clientForm: FormGroup;
@@ -19,6 +22,14 @@ export class AjouterClientComponent implements OnInit {
     ngOnInit() {
         this.initForm();
     }
+
+    showSuccess(): void {
+        this.toastr.success('Client Ajouté avec succès', 'Success', {
+            timeOut: 5000,
+            positionClass: 'toast-bottom-left'
+        });
+    }
+
 
     openConfirmationDialog(): void {
         if (this.clientForm.valid) {
@@ -52,7 +63,8 @@ export class AjouterClientComponent implements OnInit {
                     this.clientService.checkClientId(clientId).subscribe(
                         (clientExists: boolean) => {
                             if (!clientExists) {
-                                this.addClient(); // Add client if user confirms and client doesn't exist
+                                this.addClient();
+                                this.showSuccess();
                             } else {
                                 console.error('Client already exists');
                             }
@@ -72,8 +84,8 @@ export class AjouterClientComponent implements OnInit {
                         confirmButtonColor: '#d33',
                     });
                 }
-
             });
+
         } else {
             console.error('Form is invalid');
         }

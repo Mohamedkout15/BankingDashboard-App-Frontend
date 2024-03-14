@@ -13,7 +13,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: AdminLayoutComponent, // Assuming AdminLayoutComponent is your dashboard component
+    component: AdminLayoutComponent,
     children: [
       {
         path: '',
