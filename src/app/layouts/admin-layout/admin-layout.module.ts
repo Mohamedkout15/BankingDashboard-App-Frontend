@@ -14,6 +14,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatInputModule} from '@angular/material/input';
 import {DragDropModule} from '@angular/cdk/drag-drop';
  import { ToastrModule } from 'ngx-toastr';
+import {MatTableModule} from '@angular/material/table';
+import {MatSortModule} from '@angular/material/sort';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
     imports: [
@@ -27,6 +31,10 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
         MatInputModule,
         DragDropModule,
         InterfaceVisiteComponent,
+        MatTableModule,
+        MatSortModule,
+        MatIconModule,
+        MatButtonModule,
 
     ],
   declarations: [

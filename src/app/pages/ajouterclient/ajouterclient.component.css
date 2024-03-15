@@ -12,3 +12,11 @@ mat-error{
   line-height: 1.5;
 
 }
+.form-control-label{
+  color: black;
+}
+.heading-small {
+  color: black;
+  font-weight: bold;
+  font-size: medium;
+}
