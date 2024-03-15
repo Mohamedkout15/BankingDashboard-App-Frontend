@@ -55,4 +55,8 @@ export class ClientService {
     const url = `${this.baseUrl}/checkid/${clientId}`;
     return this.http.get<boolean>(url);
   }
+  getAllClients(): Observable <Array<Client>> {
+    const url = `${this.baseUrl}/findall`;
+    return this.http.get<Array<Client>>(url);
+  }
 }

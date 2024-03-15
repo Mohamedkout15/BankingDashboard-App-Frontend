@@ -10,6 +10,8 @@ import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { ToastrModule } from 'ngx-toastr';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
 
 
 
@@ -24,7 +26,9 @@ import { ToastrModule } from 'ngx-toastr';
     ReactiveFormsModule,
     FormsModule,
     BrowserModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    MatIconModule,
+    MatButtonModule,
   ],
   declarations: [
     AppComponent,
