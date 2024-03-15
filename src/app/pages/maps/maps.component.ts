@@ -27,4 +27,10 @@ export class MapsComponent implements OnInit {
       this.dataSource.sort = this.sort;
     });
   }
+  deleteClient(clientId: string) {
+    this.clientService.deleteClientByIdClient(clientId).subscribe(() => {
+      // Filter out the deleted client from the dataSource
+      this.dataSource.data = this.dataSource.data.filter(client => client.idClient !== clientId);
+    });
+  }
 }

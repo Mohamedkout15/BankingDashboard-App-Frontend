@@ -11,5 +11,5 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'ajouterclient',          component: AjouterClientComponent },
     { path: 'user-profile',   component: UserProfileComponent },
     { path: 'tables',         component: TablesComponent },
-    { path: 'maps',           component: MapsComponent }
+    { path: 'listeclients',           component: MapsComponent }
 ];

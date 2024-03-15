@@ -27,15 +27,6 @@
 
     // Navbar brand
 
-    .navbar-brand {
-        margin-right: 0;
-    }
-
-    .navbar-brand-img,
-    .navbar-brand > img {
-        max-width: 100%;
-        max-height: 2rem;
-    }
 
 
     // Navbar collapse
@@ -261,9 +252,7 @@
                         padding-bottom: (2rem - $navbar-padding-y);
                     }
 
-                    .navbar-brand-img {
-                        max-height: 2.5rem;
-                    }
+
 
                     // Navbar user
                     .navbar-user {
