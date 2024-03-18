@@ -59,4 +59,12 @@ export class ClientService {
     const url = `${this.baseUrl}/findall`;
     return this.http.get<Array<Client>>(url);
   }
+  deleteClientByIdClient(clientId: string) {
+    const url = `${this.baseUrl}/delete/${clientId}`;
+    return this.http.delete<Client>(url);
+  }
+  updateClientByIdClient(clientId: string, updatedClient: Client): Observable<Client> {
+    const url = `${this.baseUrl}/update/${clientId}`;
+    return this.http.patch<Client>(url, updatedClient);
+  }
 }

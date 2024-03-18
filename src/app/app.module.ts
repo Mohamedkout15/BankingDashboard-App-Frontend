@@ -12,6 +12,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ToastrModule } from 'ngx-toastr';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
+import {MatDialogModule} from "@angular/material/dialog";
 
 
 
@@ -29,6 +30,8 @@ import {MatButtonModule} from '@angular/material/button';
     ToastrModule.forRoot(),
     MatIconModule,
     MatButtonModule,
+    MatDialogModule
+
   ],
   declarations: [
     AppComponent,

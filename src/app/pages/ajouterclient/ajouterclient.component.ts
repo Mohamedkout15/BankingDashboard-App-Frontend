@@ -48,7 +48,7 @@ export class AjouterClientComponent implements OnInit {
                                             <p>Pays: ${formData.pays}</p> </div>`;
 
             Swal.fire({
-                title: 'Ajouter Client?',
+                title: 'Ajouter Client ?',
                 html: `Vous êtes sûr d'ajouter ce client ?<br><br>${message}`, // Display client data in the message
                 icon: 'warning',
                 showCancelButton: true,
@@ -96,7 +96,7 @@ export class AjouterClientComponent implements OnInit {
 
     addClient() {
         const newClient: Client = {
-            id: 0,
+            id : 0 ,
             idClient: this.clientForm.get('idClient').value,
             nomEntreprise: this.clientForm.get('nomEntreprise').value,
             email: this.clientForm.get('email').value,
@@ -104,6 +104,7 @@ export class AjouterClientComponent implements OnInit {
             matriculeFiscale: this.clientForm.get('matriculeFiscale').value,
             numtel: this.clientForm.get('numtel').value,
             adresse: {
+                id : 0 ,
                 adresse: this.clientForm.get('adresse').value,
                 ville: this.clientForm.get('ville').value,
                 gouvernerat: this.clientForm.get('Governorate').value,

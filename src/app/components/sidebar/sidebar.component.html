@@ -7,7 +7,7 @@
     </button>
     <!-- Brand -->
     <a class="navbar-brand" routerLinkActive="active" [routerLink]="['/InterfaceVisite']">
-      <img src="./assets/img/brand/Bank.png" class="navbar-brand-img" style="width: 2000px; height:2000px" >
+      <img src="./assets/img/brand/Bank.png" class="navbar-brand-img" style="height:200px;width: 200px;margin:unset" >
     </a>
     <!-- User -->
     <ul class="nav align-items-center d-md-none">
@@ -68,6 +68,9 @@
               <img src="./assets/img/brand/blue.png">
             </a>
           </div>
+
+
+            <hr class="my-3">
           <div class="col-6 collapse-close">
             <button type="button" class="navbar-toggler" (click)="isCollapsed=!isCollapsed">
               <span></span>
@@ -91,8 +94,8 @@
       <ul class="navbar-nav">
           <li *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
               <a routerLinkActive="active" [routerLink]="[menuItem.path]" class="nav-link">
-                  <i class="ni {{menuItem.icon}}"></i>
-                  {{menuItem.title}}
+                  <mat-icon style="margin-right: 2px">{{menuItem.icon}}</mat-icon>
+                  <span style="margin-left: 2px">{{menuItem.title}}</span>
               </a>
           </li>
       </ul>

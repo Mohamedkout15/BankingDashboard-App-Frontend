@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import { Router } from '@angular/router';
 
 declare interface RouteInfo {
@@ -8,19 +8,20 @@ declare interface RouteInfo {
     class: string;
 }
 export const ROUTES: RouteInfo[] = [
-    { path: '/interfacevisite', title: 'Interface Visite Client',  icon: 'ni-tv-2 text-primary', class: '' },
-    { path: '/maps', title: 'Liste Clients',  icon:'ni-pin-3 text-orange', class: '' },
-    { path: '/ajouterclient', title: 'Ajouter Client',  icon:'ni-planet text-blue', class: '' },
-    { path: '/user-profile', title: 'User profile',  icon:'ni-single-02 text-yellow', class: '' },
-    { path: '/tables', title: 'Tables',  icon:'ni-bullet-list-67 text-red', class: '' },
-    { path: '/login', title: 'Login',  icon:'ni-key-25 text-info', class: '' },
-    { path: '/register', title: 'Register',  icon:'ni-circle-08 text-pink', class: '' }
+    { path: '/interfacevisite', title: 'Interface Visite Client',  icon: 'attach_money', class: '' },
+    { path: '/listeclients', title: 'Liste Clients',  icon:'format_list_bulleted', class: '' },
+    { path: '/ajouterclient', title: 'Ajouter Client',  icon:'person_add', class: '' },
+    { path: '/user-profile', title: 'User profile',  icon:'', class: '' },
+    { path: '/tables', title: 'Tables',  icon:'', class: '' },
+    { path: '/login', title: 'Login',  icon:'', class: '' },
+    { path: '/register', title: 'Register',  icon:'', class: '' }
 ];
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.scss']
+  styleUrls: ['./sidebar.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class SidebarComponent implements OnInit {
 

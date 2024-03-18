@@ -13,11 +13,11 @@ import { TablesComponent } from '../../pages/tables/tables.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatInputModule} from '@angular/material/input';
 import {DragDropModule} from '@angular/cdk/drag-drop';
- import { ToastrModule } from 'ngx-toastr';
 import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
+import {MatDialogModule} from "@angular/material/dialog";
 
 @NgModule({
     imports: [
@@ -35,6 +35,8 @@ import {MatButtonModule} from '@angular/material/button';
         MatSortModule,
         MatIconModule,
         MatButtonModule,
+        MatDialogModule
+
 
     ],
   declarations: [
