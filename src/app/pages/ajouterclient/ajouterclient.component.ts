@@ -104,6 +104,7 @@ export class AjouterClientComponent implements OnInit {
             matriculeFiscale: this.clientForm.get('matriculeFiscale').value,
             numtel: this.clientForm.get('numtel').value,
             adresse: {
+                id : 0 ,
                 adresse: this.clientForm.get('adresse').value,
                 ville: this.clientForm.get('ville').value,
                 gouvernerat: this.clientForm.get('Governorate').value,

@@ -3,14 +3,13 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Client } from "../../Models/Client.model";
 import { ClientService } from "../../services/Client.service";
-import {MatFormFieldModule} from "@angular/material/form-field";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
     selector: 'app-edit-client-dialog',
     templateUrl: './editclient.component.html',
     standalone: true,
     imports: [
-        MatFormFieldModule,
         ReactiveFormsModule
     ],
     styleUrls: ['./editclient.component.css']
@@ -41,7 +40,7 @@ export class EditClient implements OnInit {
             codepostal: [this.client.adresse.codepostal, Validators.required],
             adresse: [this.client.adresse.adresse, Validators.required],
             ville: [this.client.adresse.ville, Validators.required],
-            gouvernorat: [this.client.adresse.gouvernerat, Validators.required],
+            gouvernerat: [this.client.adresse.gouvernerat, Validators.required],
             pays: ['Tunisia']
         });
     }
@@ -49,14 +48,41 @@ export class EditClient implements OnInit {
     onSubmit() {
         if (this.editForm.valid) {
             const updatedClient: Client = {
+                id: 0,
                 idClient: this.client.idClient,
-                ...this.editForm.value
+                adresse: {
+                    id: 0,
+                    ville: this.editForm.value.ville,
+                    adresse: this.editForm.value.adresse,
+                    gouvernerat: this.editForm.value.gouvernerat,
+                    codepostal: this.editForm.value.codepostal,
+                    pays: this.editForm.value.pays,
+                },
+                premiereVisite: this.client.premiereVisite || null,
+                deuxiemeVisite: this.client.deuxiemeVisite || null,
+                promesseClient: this.client.promesseClient || null,
+                domaine:this.editForm.value.domaine,
+                email:this.editForm.value.email,
+                matriculeFiscale:this.editForm.value.matriculeFiscale,
+                numtel:this.editForm.value.numtel,
+                nomEntreprise:this.editForm.value.nomEntreprise// Handle undefined values
             };
-            this.clientService.updateClientByIdClient(this.client.idClient, updatedClient).subscribe(() => {
-                this.dialogRef.close(updatedClient);
+            this.clientService.updateClientByIdClient(this.client.idClient, updatedClient).subscribe({
+                next: () => {
+                    console.log("Updated Client (After Update):", updatedClient);
+                    this.dialogRef.close(updatedClient);
+                },
+                error: (error: HttpErrorResponse) => {
+                    if (error.status === 400) {
+                        console.error('Bad Request Error:', error.error);
+                    } else {
+                        console.error('An unexpected error occurred:', error);
+                    }
+                }
             });
         }
     }
+
 
     onCancelClick(): void {
         this.dialogRef.close();

@@ -1,49 +1,88 @@
-<h1 mat-dialog-title>Edit Client</h1>
-<div mat-dialog-content class="dialog-content">
-    <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
-        <mat-form-field class="full-width">
-            <mat-label>Nom Entreprise</mat-label>
-            <input matInput formControlName="nomEntreprise" required>
-        </mat-form-field>
-        <mat-form-field class="full-width">
-            <mat-label>Email</mat-label>
-            <input matInput formControlName="email" required>
-        </mat-form-field>
-        <mat-form-field class="full-width">
-            <mat-label>Domaine</mat-label>
-            <input matInput formControlName="domaine">
-        </mat-form-field>
-        <mat-form-field class="full-width">
-            <mat-label>Numéro de téléphone</mat-label>
-            <input matInput formControlName="numtel">
-        </mat-form-field>
-        <mat-form-field class="full-width">
-            <mat-label>Matricule Fiscale</mat-label>
-            <input matInput formControlName="matriculeFiscale">
-        </mat-form-field>
-        <mat-form-field class="full-width">
-            <mat-label>Adresse</mat-label>
-            <input matInput formControlName="adresse">
-        </mat-form-field>
-        <mat-form-field class="full-width">
-            <mat-label>Ville</mat-label>
-            <input matInput formControlName="ville">
-        </mat-form-field>
-        <mat-form-field class="full-width">
-            <mat-label>Gouvernorat</mat-label>
-            <input matInput formControlName="gouvernorat">
-        </mat-form-field>
-        <mat-form-field class="full-width">
-            <mat-label>Code Postal</mat-label>
-            <input matInput formControlName="codepostal">
-        </mat-form-field>
-        <mat-form-field class="full-width">
-            <mat-label>Pays</mat-label>
-            <input matInput formControlName="pays">
-        </mat-form-field>
-    </form>
-</div>
-<div mat-dialog-actions class="dialog-actions">
-    <button mat-button (click)="onCancelClick()">Annuler</button>
-    <button mat-button color="primary" type="submit" [disabled]="!editForm.valid">Enregistrer</button>
-</div>
+
+    <!-- Page content -->
+    <div class="container-fluid ">
+        <div class="card">
+            <div class="card-body">
+                <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+                    <h6 class="heading-small">Edit Client</h6>
+                    <div class="dialog-content pl-lg-4">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="nomEntreprise">Nom Entreprise</label>
+                                    <input type="text" id="nomEntreprise" formControlName="nomEntreprise" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" formControlName="email" class="form-control" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="domaine">Domaine</label>
+                                    <input type="text" id="domaine" formControlName="domaine" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="numtel">Numéro de téléphone</label>
+                                    <input type="text" id="numtel" formControlName="numtel" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="matriculeFiscale">Matricule Fiscale</label>
+                                    <input type="text" id="matriculeFiscale" formControlName="matriculeFiscale" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="adresse">Adresse</label>
+                                    <input type="text" id="adresse" formControlName="adresse" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="ville">Ville</label>
+                                    <input type="text" id="ville" formControlName="ville" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="gouvernerat">Gouvernorat</label>
+                                    <input type="text" id="gouvernerat" formControlName="gouvernerat" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="codepostal">Code Postal</label>
+                                    <input type="text" id="codepostal" formControlName="codepostal" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="pays">Pays</label>
+                                    <input type="text" id="pays" formControlName="pays" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dialog-actions">
+                        <button mat-button (click)="onCancelClick()">Annuler</button>
+                        <button mat-button color="primary" (click)="onSubmit()" >Enregistrer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+

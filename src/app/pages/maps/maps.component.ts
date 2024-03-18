@@ -42,7 +42,6 @@ export class MapsComponent implements OnInit {
       gouvernorat: [''],
       pays: ['Tunisia']
     });
-
     this.fetchClients();
   }
 
