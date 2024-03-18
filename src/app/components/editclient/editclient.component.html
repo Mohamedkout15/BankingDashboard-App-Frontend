@@ -1,0 +1,49 @@
+<h1 mat-dialog-title>Edit Client</h1>
+<div mat-dialog-content class="dialog-content">
+    <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+        <mat-form-field class="full-width">
+            <mat-label>Nom Entreprise</mat-label>
+            <input matInput formControlName="nomEntreprise" required>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" required>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Domaine</mat-label>
+            <input matInput formControlName="domaine">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Numéro de téléphone</mat-label>
+            <input matInput formControlName="numtel">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Matricule Fiscale</mat-label>
+            <input matInput formControlName="matriculeFiscale">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Adresse</mat-label>
+            <input matInput formControlName="adresse">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Ville</mat-label>
+            <input matInput formControlName="ville">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Gouvernorat</mat-label>
+            <input matInput formControlName="gouvernorat">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Code Postal</mat-label>
+            <input matInput formControlName="codepostal">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Pays</mat-label>
+            <input matInput formControlName="pays">
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions class="dialog-actions">
+    <button mat-button (click)="onCancelClick()">Annuler</button>
+    <button mat-button color="primary" type="submit" [disabled]="!editForm.valid">Enregistrer</button>
+</div>

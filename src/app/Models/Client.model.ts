@@ -4,7 +4,7 @@ import {PromesseClient} from './PromesseClient.model';
 import {Adresse} from './adresse.model';
 
 export interface Client {
-  id: number;
+  id : number,
   idClient: string;
   nomEntreprise: string;
   email: string;

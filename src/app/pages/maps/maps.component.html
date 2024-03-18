@@ -28,7 +28,7 @@
                     <ng-container matColumnDef="actions">
                         <th mat-header-cell *matHeaderCellDef>  </th>
                         <td mat-cell *matCellDef="let client">
-                            <button mat-icon-button color="primary" >
+                            <button mat-icon-button color="primary" (click)="openEditDialog(client)" >
                                 <mat-icon>edit</mat-icon>
                             </button>
                             <button mat-icon-button color="warn" (click)="deleteClient(client.idClient)">
