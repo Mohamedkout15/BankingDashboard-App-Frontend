@@ -47,4 +47,6 @@ import {MatDialogModule} from "@angular/material/dialog";
   ]
 })
 
-export class AdminLayoutModule {}
+export class AdminLayoutModule {
+
+}

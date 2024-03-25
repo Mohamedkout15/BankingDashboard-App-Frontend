@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import { Client } from '../Models/Client.model';
 
 @Injectable({
@@ -8,11 +8,14 @@ import { Client } from '../Models/Client.model';
 })
 export class ClientService {
   private baseUrl = 'http://localhost:8081/client';
-
+  private clientsSubject = new BehaviorSubject<Client[]>([]);
+  clients$: Observable<Client[]> = this.clientsSubject.asObservable();
 
   constructor(private http: HttpClient) {
   }
-
+  updateClients(clients: Client[]) {
+    this.clientsSubject.next(clients);
+  }
   getClientById(id: string): Observable<Client> {
     const url = `${this.baseUrl}/findclient/${id}`;
     return this.http.get<Client>(url);

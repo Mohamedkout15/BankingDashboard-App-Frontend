@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { ClientService } from '../../services/Client.service';
 import { Client } from '../../Models/Client.model';
 import { MatTableDataSource } from '@angular/material/table';
@@ -6,14 +6,15 @@ import { MatSort } from '@angular/material/sort';
 import Swal from "sweetalert2";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from "ngx-toastr";
-import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 import { EditClient } from "../../components/editclient/editclient.component";
 
 @Component({
   selector: 'app-maps',
   templateUrl: './maps.component.html',
   styleUrls: ['./maps.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MapsComponent implements OnInit {
   clients: Client[] = [];
@@ -26,7 +27,8 @@ export class MapsComponent implements OnInit {
       private fb: FormBuilder,
       private clientService: ClientService,
       private toastr: ToastrService,
-      private dialog: MatDialog // Inject the MatDialog service
+      private dialog: MatDialog, // Inject the MatDialog service
+      private cdr: ChangeDetectorRef // Inject ChangeDetectorRef
   ) { }
 
   ngOnInit() {
@@ -50,6 +52,8 @@ export class MapsComponent implements OnInit {
       this.clients = data;
       this.dataSource = new MatTableDataSource(this.clients);
       this.dataSource.sort = this.sort;
+      // Trigger change detection manually
+      this.cdr.detectChanges();
     });
   }
 
@@ -78,7 +82,12 @@ export class MapsComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.clientService.deleteClientByIdClient(clientId).subscribe(() => {
-          this.fetchClients();
+          // Remove the deleted client from the data source
+          this.clients = this.clients.filter(client => client.idClient !== clientId);
+          this.dataSource = new MatTableDataSource(this.clients);
+          this.dataSource.sort = this.sort;
+          // Trigger change detection manually
+          this.cdr.detectChanges();
           Swal.fire('Supprimé!', 'Votre client a été supprimé.', 'success');
           this.toastr.error('Client supprimé avec succès', 'Deleted', {
             timeOut: 5000,
@@ -90,7 +99,6 @@ export class MapsComponent implements OnInit {
       }
     });
   }
-
   openEditDialog(client: Client): void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = client;
@@ -104,7 +112,12 @@ export class MapsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === 'success') {
-        this.fetchClients();
+        const index = this.dataSource.data.findIndex(c => c.idClient === client.idClient);
+        if (index !== -1) {
+          this.dataSource.data[index] = client;
+          this.dataSource._updateChangeSubscription();
+          this.cdr.detectChanges();
+        }
       }
     });
   }
