@@ -1,9 +1,10 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {Component, Inject, OnInit, ChangeDetectionStrategy, Output} from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Client } from "../../Models/Client.model";
 import { ClientService } from "../../services/Client.service";
-import {HttpErrorResponse} from "@angular/common/http";
+import { HttpErrorResponse } from "@angular/common/http";
+import {EventEmitter} from "protractor";
 
 @Component({
     selector: 'app-edit-client-dialog',
@@ -12,11 +13,14 @@ import {HttpErrorResponse} from "@angular/common/http";
     imports: [
         ReactiveFormsModule
     ],
-    styleUrls: ['./editclient.component.css']
+    styleUrls: ['./editclient.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EditClient implements OnInit {
     editForm: FormGroup;
     client: Client;
+    @Output() updateSuccess: EventEmitter = new EventEmitter();
+
 
     constructor(
         private fb: FormBuilder,
@@ -61,16 +65,17 @@ export class EditClient implements OnInit {
                 premiereVisite: this.client.premiereVisite || null,
                 deuxiemeVisite: this.client.deuxiemeVisite || null,
                 promesseClient: this.client.promesseClient || null,
-                domaine:this.editForm.value.domaine,
-                email:this.editForm.value.email,
-                matriculeFiscale:this.editForm.value.matriculeFiscale,
-                numtel:this.editForm.value.numtel,
-                nomEntreprise:this.editForm.value.nomEntreprise// Handle undefined values
+                domaine: this.editForm.value.domaine,
+                email: this.editForm.value.email,
+                matriculeFiscale: this.editForm.value.matriculeFiscale,
+                numtel: this.editForm.value.numtel,
+                nomEntreprise: this.editForm.value.nomEntreprise // Handle undefined values
             };
             this.clientService.updateClientByIdClient(this.client.idClient, updatedClient).subscribe({
                 next: () => {
                     console.log("Updated Client (After Update):", updatedClient);
-                    this.dialogRef.close(updatedClient);
+                    this.updateSuccess.emit('success');
+                    this.dialogRef.close();
                 },
                 error: (error: HttpErrorResponse) => {
                     if (error.status === 400) {
@@ -83,8 +88,8 @@ export class EditClient implements OnInit {
         }
     }
 
-
     onCancelClick(): void {
         this.dialogRef.close();
     }
 }
+
